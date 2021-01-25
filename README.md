@@ -7,12 +7,12 @@ fire alarm management app
 1.tabele / interfata
     a. tabel persoane:
         - Functie (admin, responsabil)
-            -> adimin
+            -> adimin 
                 . adauga & stearge persoane
                 . sa adauge & stearga etaje si camere 
                 . schimba statut persoana
 
-            -> resoponabil zona
+            -> resoponabil zona (o)
                 . adauga & stearge persoane
                 . schimba statut persoanele care ii apartin
 
@@ -24,7 +24,7 @@ fire alarm management app
         - nr de telefon
         - locatie (unde se afla)
         
-    b. tabel etaje/ camere 
+    b. tabel etaje/ camere (o)
         - etaj
         - camere
 
@@ -40,3 +40,9 @@ fire alarm management app
    . opetions:
         - logare admin ?
         - un link care sa confirme ca persoana e ok ?
+
+1-- afisare utilizatori
+1-- adauga pers -- important - > rol (stingator/anuntator/resp evacuare)
+-- prezenta 
+-- safe sau nu
+ 
