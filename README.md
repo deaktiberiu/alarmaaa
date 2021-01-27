@@ -15,7 +15,7 @@ fire alarm management app
             -> resoponabil zona (o)
                 . adauga & stearge persoane
                 . schimba statut persoanele care ii apartin
-
+ 
             -> utilizator
                 . schimbe statusul lui
         
