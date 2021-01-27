@@ -21,7 +21,7 @@ router.get("/install", function (req, res, next) {
   pool.getConnection(function (err, connection) {
     if (err) throw err;
     const sql = `
-    CREATE TABLE IF NOT EXISTS members (id INT NOT NULL AUTO_INCREMENT, firstName TEXT NOT NULL, lastName TEXT NOT NULL, gitHub TEXT NOT NULL, PRIMARY KEY (id)) ENGINE = InnoDB;
+    CREATE TABLE IF NOT EXISTS members (id INT NOT NULL AUTO_INCREMENT, functie TEXT NOT NULL, fullName TEXT NOT NULL, telefon TEXT NOT NULL, prezent TEXT NOT NULL, isSafe TEXT NOT NULL, PRIMARY KEY (id)) ENGINE = InnoDB;
     `;
     connection.query(sql, function (err, results) {
       if (err) throw err;
