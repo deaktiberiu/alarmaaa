@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="styal.css">
+    <link rel="stylesheet" href="style.css">
    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alam</title>
 </head>
 <body>
-    
-    <table>
 
+    <table id="statusList">
         <thead>
-            <td>
-                Functie
-            </td>
-            <td>
-                Nume & Prenume
-            </td>
-            <td>
-                Tel
-            </td>
-            <td>
-                Prezenta
-            </td>
-
-
-        </thead>
-
+            <tr>
+                <th>Functie</th>
+                <th>Nume Prenume</th>
+                <th>Telefon</th>              
+                <th class="present-cell">Prezent</th>
+                <th class="safe-cell">In siguranta ?</th>
+             
+            </tr>
+        </thead> 
+        <tbody>
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <input  type='text' placeholder="Type function" name='functie'/></td>
+                <td> <input  type='text' placeholder="Type Full Name" name='fullName'/></td>
+                <td> <input  type='text' placeholder="Type Phone" name='telefon'/></td>
+                <td class="end-cell"><button id="saveBtn">Save</button></td>
+            </tr>
+        </tfoot>
     </table>
 
     <script src="functions.js" ></script>

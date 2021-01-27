@@ -1,0 +1,66 @@
+[
+  {
+    "id": "abcdef1610310163146",
+    "functie": "stingator",
+    "fullName": "Deak Tiberiu",
+    "telefon": "316516515",
+    "prezent": "false",
+    "isSafe": "fasle"
+  },
+  {
+    "id": "abcdef1610310163146",
+    "functie": "anuntator",
+    "fullName": "Mihaly Kadar",
+    "telefon": "32131",
+    "prezent": "ture",
+    "isSafe": "true"
+  },
+  {
+    "id": "abcdef1610310163146",
+    "functie": "resp evacuare",
+    "fullName": "ionela",
+    "telefon": "32131",
+    "prezent": "ture",
+    "isSafe": "false"
+  },
+  {
+    "id": "5c8cl51611776435110"
+  },
+  {
+    "id": "hgq9k31611776496788"
+  },
+  {
+    "id": "cfu78n1611776564857"
+  },
+  {
+    "id": "bhpcdh1611776706853"
+  },
+  {
+    "id": "ekoxxh1611776754236",
+    "functie": "asd",
+    "telefon": "asd",
+    "prezent": false,
+    "isSafe": false
+  },
+  {
+    "id": "t6b1yd1611776762432",
+    "functie": "asdasd",
+    "telefon": "asdasd",
+    "prezent": false,
+    "isSafe": false
+  },
+  {
+    "id": "9k5tds1611776780054",
+    "functie": "stingator",
+    "telefon": "456",
+    "prezent": false,
+    "isSafe": false
+  },
+  {
+    "id": "be2dvp1611776897556",
+    "functie": "asd",
+    "telefon": "asd",
+    "prezent": false,
+    "isSafe": false
+  }
+]
