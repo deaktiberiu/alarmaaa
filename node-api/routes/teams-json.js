@@ -23,7 +23,8 @@ router.get("/", function (req, res, next) {
  */
 router.post("/create", function (req, res, next) {
   const functie = req.body.functie;
-  const fullNume = req.body.fullNume;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const telefon = req.body.telefon;
   const prezent = req.body.prezent;
   const isSafe = req.body.isSafe;
@@ -36,7 +37,8 @@ router.post("/create", function (req, res, next) {
   persons.push({
     id,
     functie,
-    fullNume,
+    firstName,
+    lastName,
     telefon,
     prezent,
     isSafe
@@ -73,7 +75,8 @@ router.delete("/delete", function (req, res, next) {
 router.put("/update", function (req, res, next) {
   const id = req.body.id;
   const functie = req.body.functie;
-  const fullName = req.body.fullName;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const telefon = req.body.telefon;
   const prezent = req.body.prezent;
   const isSafe = req.body.isSafe;
@@ -86,7 +89,8 @@ router.put("/update", function (req, res, next) {
   });
   if (contact) {
     contact.functie = functie;
-    contact.fullName = fullName;
+    contact.firstName = firstName;
+    contact.lastName = lastName;
     contact.telefon = telefon;
     contact.prezent = prezent;
     contact.isSafe = isSafe;

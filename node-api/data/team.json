@@ -2,7 +2,8 @@
   {
     "id": "abcdef1610310163146",
     "functie": "stingator",
-    "fullName": "Deak Tiberiu",
+    "firstName": "Deak ",
+    "lastName": " Tiberiu",
     "telefon": "316516515",
     "prezent": "false",
     "isSafe": "fasle"
@@ -10,37 +11,18 @@
   {
     "id": "abcdef1610310163146",
     "functie": "anuntator",
-    "fullName": "Mihaly Kadar",
+    "firstName": "Kadar",
+    "lastName": "Mihaly",
     "telefon": "32131",
     "prezent": "ture",
     "isSafe": "true"
   },
   {
-    "id": "abcdef1610310163146",
-    "functie": "resp evacuare",
-    "fullName": "ionela",
-    "telefon": "32131",
-    "prezent": "ture",
-    "isSafe": "false"
-  },
-  {
-    "id": "53lwru1611777287040",
-    "functie": "alin",
-    "telefon": "65464",
-    "prezent": false,
-    "isSafe": false
-  },
-  {
-    "id": "vhcug1611777373112",
-    "functie": "asd",
-    "telefon": "asd",
-    "prezent": false,
-    "isSafe": false
-  },
-  {
-    "id": "n16gcyu1611777445548",
-    "functie": "asd",
-    "telefon": "asd",
+    "id": "6sodr1611860841641",
+    "functie": "adwfs",
+    "firstName": "defs",
+    "lastName": "defg",
+    "telefon": "def",
     "prezent": false,
     "isSafe": false
   }

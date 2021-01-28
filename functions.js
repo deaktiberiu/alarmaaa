@@ -25,7 +25,8 @@ function getPersonsHtml (persons) {
 function getPersonhtml (person) {
     return `<tr>
                 <td>${person.functie}</td>
-                <td>${person.fullName}</td>
+                <td>${person.firstName}</td>
+                <td>${person.lastName}</td>
                 <td>${person.telefon}</td>
                 <td> <button type="button">Prezent</button> ${person.prezent}</td>
                 <td> <button type="button">Safe</button> ${person.isSafe}</td>
@@ -33,15 +34,17 @@ function getPersonhtml (person) {
 }
 
 function writeNewPerson () {
-    const functie = document.querySelector("#statusList input[name=functie]").value;
-    const fullName = document.querySelector("#statusList input[name=fullName]").value;
-    const telefon = document.querySelector("#statusList input[name=telefon]").value;
+    const functie = document.querySelector("input[name=functie]").value;
+    const firstName = document.querySelector("input[name=firstName]").value;
+    const lastName = document.querySelector("input[name=lastName]").value;
+    const telefon = document.querySelector("input[name=telefon]").value;
     const prezent = false;
     const isSafe = false;
     
     const person = {
         functie,
-        fullName,
+        firstName,
+        lastName,
         telefon,
         prezent,
         isSafe
@@ -60,6 +63,7 @@ function writeNewPerson () {
             if (r.success) {
                 console.info('refresh list');
                 loadList();
+                console.warn(person)
             }
         });
 }

@@ -51,15 +51,16 @@ router.get("/", function (req, res, next) {
  */
 router.post("/create", function (req, res, next) {
   const functie = req.body.functie;
-  const fullName = req.body.fullName;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const telefon = req.body.telefon;
   const prezent = req.body.prezent;
   const isSafe = req.body.isSafe;
 
   pool.getConnection(function (err, connection) {
     if (err) throw err;
-    const sql = `INSERT INTO members (id, functie, fullName, telefon, prezent, isSafe) VALUES (NULL, ?, ?, ?);`;
-    connection.query(sql, [functie, fullName, telefon, prezent, isSafe], function (err, results) {
+    const sql = `INSERT INTO members (id, functie, firstName, lastName, telefon, prezent, isSafe) VALUES (NULL, ?, ?, ?);`;
+    connection.query(sql, [functie, firstName, lastName, telefon, prezent, isSafe], function (err, results) {
       if (err) throw err;
       const id = results.insertId;
       connection.release();
@@ -94,15 +95,16 @@ router.delete("/delete", function (req, res, next) {
 router.put("/update", function (req, res, next) {
   const id = req.body.id;
   const functie = req.body.functie;
-  const fullName = req.body.fullName;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const telefon = req.body.telefon;
   const prezent = req.body.prezent;
   const isSafe = req.body.isSafe;
 
   pool.getConnection(function (err, connection) {
     if (err) throw err;
-    const sql = `UPDATE members SET functie=?, fullName=?, telefon=?, prezent=?, isSafe=?,WHERE id=?`;
-    connection.query(sql, [functie, fullName, telefon, prezent, isSafe, id], function (err, results) {
+    const sql = `UPDATE members SET functie=?, firstName=?, lastName=?, telefon=?, prezent=?, isSafe=?,WHERE id=?`;
+    connection.query(sql, [functie, firstName, lastName, telefon, prezent, isSafe, id], function (err, results) {
       if (err) throw err;
       connection.release();
       res.json({ success: true });
