@@ -78,8 +78,7 @@ router.put("/update", function (req, res, next) {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const telefon = req.body.telefon;
-  const prezent = req.body.prezent;
-  const isSafe = req.body.isSafe;
+  
 
   let content = fs.readFileSync(DATA_PATH);
   const persons = JSON.parse(content);
@@ -92,8 +91,7 @@ router.put("/update", function (req, res, next) {
     contact.firstName = firstName;
     contact.lastName = lastName;
     contact.telefon = telefon;
-    contact.prezent = prezent;
-    contact.isSafe = isSafe;
+    
   }
 
   content = JSON.stringify(persons, null, 2);

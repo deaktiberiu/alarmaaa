@@ -17,6 +17,8 @@ const API = {
     }
 };
 
+let editId;
+
 function getPersonsHtml (persons) {
     const tbody = document.querySelector('#statusList tbody');
     tbody.innerHTML = persons.map(getPersonhtml).join(""); 
@@ -31,7 +33,7 @@ function getPersonhtml (person) {
                 <td> <button class="prezentBtn" type="button" data-id="${person.id}">Prezent</button> ${person.prezent}</td>
                 <td> <button class="" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
                 <td>
-                    <!--a href="#" class="edit-row" data-id="${person.id}">&#9998;</a-->
+                    <a href="#" class="edit-row" data-id="${person.id}">&#9998;</a>
                     <a href="#" class="delete-row" data-id="${person.id}">&#10006;</a>     
                 </td>
             </tr>`
@@ -70,6 +72,55 @@ function writeNewPerson () {
                 console.warn(person)
             }
         });
+}
+
+function editPeron() {
+    const functie = document.querySelector("input[name=functie]").value;
+    const firstName = document.querySelector("input[name=firstName]").value;
+    const lastName = document.querySelector("input[name=lastName]").value;
+    const telefon = document.querySelector("input[name=telefon]").value;
+
+    const person = {
+        functie,
+        firstName,
+        lastName,
+        telefon
+    }
+    fetch(API.UPDATE.URL, {
+        method: API.UPDATE.METHOD,
+        headers: {
+            "Content-Type": "application/json"
+          },
+        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(person)
+    })
+        .then(res => res.json())
+        .then(r => {
+            console.warn(r);
+            if (r.success) {
+                console.info('refresh list');
+                loadList();
+                console.warn(person)
+            }
+        });
+   
+}
+
+function populateCurrentPeron(id){
+    var person = allPersons.find(person => person.id === id)
+
+    editId = id;
+
+    const functie = document.querySelector("input[name=functie]");
+    const firstName = document.querySelector("input[name=firstName]");
+    const lastName = document.querySelector("input[name=lastName]");
+    const telefon = document.querySelector("input[name=telefon]");
+
+        functie.value = person.functie
+        firstName.value = person.firstName
+        lastName.value = person.lastName
+        telefon.value = person.telefon
+           
+
 }
 
 function deletePerson (id) {
@@ -135,7 +186,11 @@ function addListeners () {
 
     const saveBtn = document.getElementById("saveBtn");
     saveBtn.addEventListener("click", () => {
-        writeNewPerson ();
+        if ( editId){
+            editPeron() 
+        } else {
+            writeNewPerson ();
+        }
     });
 
     const table = document.querySelector("#statusList tbody");
@@ -145,6 +200,9 @@ function addListeners () {
             const id  = target.getAttribute("data-id");
             console.log("delete row", id);
             deletePerson(id);
+        }else if(target.matches("a.edit-row")) {
+            const id  = target.getAttribute("data-id");
+            populateCurrentPeron(id)
         }
     });
 }
