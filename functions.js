@@ -23,13 +23,17 @@ function getPersonsHtml (persons) {
 }
 
 function getPersonhtml (person) {
-    return `<tr>
+    return `<tr id=${person.id}>
                 <td>${person.functie}</td>
                 <td>${person.firstName}</td>
                 <td>${person.lastName}</td>
                 <td>${person.telefon}</td>
-                <td> <button type="button">Prezent</button> ${person.prezent}</td>
-                <td> <button type="button">Safe</button> ${person.isSafe}</td>
+                <td> <button class="prezentBtn" type="button" data-id="${person.id}">Prezent</button> ${person.prezent}</td>
+                <td> <button class="" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
+                <td>
+                    <!--a href="#" class="edit-row" data-id="${person.id}">&#9998;</a-->
+                    <a href="#" class="delete-row" data-id="${person.id}">&#10006;</a>     
+                </td>
             </tr>`
 }
 
@@ -68,6 +72,42 @@ function writeNewPerson () {
         });
 }
 
+function deletePerson (id) {
+        fetch("http://localhost:3000/teams-json/delete", {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id })
+          }).then(res => res.json()).then(
+              r => {
+                loadList();
+              }
+          );
+}
+
+function changePrezenta(id) {
+    const person = [
+    ]
+
+    
+    fetch(API.UPDATE.URL, {
+        method: API.UPDATE.METHOD,
+        headers: {
+            "Content-Type": "application/json"
+          },
+        body: API.CREATE.METHOD === "GET" ? null : JSON.stringify(person)
+    })
+        .then(res => res.json())
+        .then(r => {
+            console.warn(r);
+            if (r.success) {
+                console.info('refresh list');
+                loadList();
+            }
+        })
+}
+
 let allPersons = [];
 
 function loadList() {
@@ -82,13 +122,31 @@ function loadList() {
 
 loadList();
 
-
 function addListeners () {
+    const prezentBtn = document.querySelector("#statusList tbody");
+    prezentBtn.addEventListener("click", (e) => {
+        const target = e.target;
+        
+        if(target.matches(".prezentBtn")) {
+            const id = target.getAttribute("data-id");
+            changePrezenta(id);
+        }
+    })
+
     const saveBtn = document.getElementById("saveBtn");
     saveBtn.addEventListener("click", () => {
         writeNewPerson ();
     });
-}
 
+    const table = document.querySelector("#statusList tbody");
+    table.addEventListener("click", (e) => {
+        const target= e.target;
+        if ( target.matches("a.delete-row")) {
+            const id  = target.getAttribute("data-id");
+            console.log("delete row", id);
+            deletePerson(id);
+        }
+    });
+}
 
 addListeners ();

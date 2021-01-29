@@ -1,28 +1,19 @@
 [
   {
-    "id": "abcdef1610310163146",
-    "functie": "stingator",
-    "firstName": "Deak ",
-    "lastName": " Tiberiu",
-    "telefon": "316516515",
-    "prezent": "false",
-    "isSafe": "fasle"
+    "id": "uv3lxm1611946631151",
+    "functie": "Stingator",
+    "firstName": "Mihaly ",
+    "lastName": "Kadar",
+    "telefon": "123456",
+    "prezent": false,
+    "isSafe": false
   },
   {
-    "id": "abcdef1610310163146",
-    "functie": "anuntator",
-    "firstName": "Kadar",
-    "lastName": "Mihaly",
-    "telefon": "32131",
-    "prezent": "ture",
-    "isSafe": "true"
-  },
-  {
-    "id": "6sodr1611860841641",
-    "functie": "adwfs",
-    "firstName": "defs",
-    "lastName": "defg",
-    "telefon": "def",
+    "id": "1phgyu1611946645886",
+    "functie": "Anuntator",
+    "firstName": "Tiberiu",
+    "lastName": "Deak",
+    "telefon": "654311",
     "prezent": false,
     "isSafe": false
   }
