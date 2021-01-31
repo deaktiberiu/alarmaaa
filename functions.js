@@ -65,10 +65,10 @@ function loadList() {
 loadList();
 
 function searchPersons(text){
-    text= text.toLowerCase()
+    text= text.toLowerCase().trim();
    
     return allPersons.filter(person => {
-        return person.firstName.toLowerCase().indexOf(text) > -1 || person.lastName.toLowerCase().indexOf(text) > -1 ;
+        return  person.functie.toLowerCase().indexOf(text) > -1 || person.firstName.toLowerCase().indexOf(text) > -1 || person.lastName.toLowerCase().indexOf(text) > -1  || person.telefon.toLowerCase().indexOf(text) > -1 ;
     });
 
 };
