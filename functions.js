@@ -19,9 +19,11 @@ const API = {
 
 let editId;
 
+
+
 function getPersonsHtml (persons) {
     const tbody = document.querySelector('#statusList tbody');
-    tbody.innerHTML = persons.map(getPersonhtml).join(""); 
+    tbody.innerHTML = persons.map (getPersonhtml).join(""); 
 }
 
 function getPersonhtml (person) {
@@ -38,6 +40,29 @@ function getPersonhtml (person) {
                 </td>
             </tr>`
 }
+
+let allPersons = [];
+
+function loadList() {
+    fetch(API.READ.URL)
+        .then(res => res.json())
+        .then(data => {
+            allPersons = data;
+           console.log(data)
+           getPersonsHtml(allPersons);
+        });
+}
+
+loadList();
+
+function searchPersons(text){
+    text= text.toLowerCase()
+    console.warn("serch", text, allPersons)
+    return allPersons.filter(person => {
+        return person.firstName.toLowerCase().indexOf(text) > -1 || person.lastName.toLowerCase().indexOf(text) > -1 ;
+    });
+
+};
 
 function writeNewPerson () {
     const functie = document.querySelector("input[name=functie]").value;
@@ -85,7 +110,7 @@ function editPeron() {
         firstName,
         lastName,
         telefon
-    }
+    };
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
         headers: {
@@ -93,13 +118,11 @@ function editPeron() {
           },
         body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(person)
     })
+   
         .then(res => res.json())
         .then(r => {
-            console.warn(r);
             if (r.success) {
-                console.info('refresh list');
                 loadList();
-                console.warn(person)
             }
         });
    
@@ -147,7 +170,7 @@ function changePrezenta(id) {
         headers: {
             "Content-Type": "application/json"
           },
-        body: API.CREATE.METHOD === "GET" ? null : JSON.stringify(person)
+        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(person)
     })
         .then(res => res.json())
         .then(r => {
@@ -159,21 +182,17 @@ function changePrezenta(id) {
         })
 }
 
-let allPersons = [];
 
-function loadList() {
-    fetch(API.READ.URL)
-        .then(res => res.json())
-        .then(data => {
-            allPersons = data;
-           console.log(data)
-           getPersonsHtml(allPersons);
-        });
-}
-
-loadList();
 
 function addListeners () {
+
+    const search = document.getElementById('search')
+    search.addEventListener("input", e => {
+        const text = e.target.value
+        const filtrate = searchPersons(text)
+        getPersonsHtml(filtrate)
+    });
+
     const prezentBtn = document.querySelector("#statusList tbody");
     prezentBtn.addEventListener("click", (e) => {
         const target = e.target;
@@ -187,7 +206,7 @@ function addListeners () {
     const saveBtn = document.getElementById("saveBtn");
     saveBtn.addEventListener("click", () => {
         if ( editId){
-            editPeron() 
+            editPeron(); 
         } else {
             writeNewPerson ();
         }

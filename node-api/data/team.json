@@ -5,7 +5,7 @@
     "firstName": "Mihaly ",
     "lastName": "Kadar",
     "telefon": "123456",
-    "prezent": false,
+    "prezent": true,
     "isSafe": false
   },
   {
@@ -15,6 +15,6 @@
     "lastName": "Deak",
     "telefon": "654311",
     "prezent": false,
-    "isSafe": false
+    "isSafe": true
   }
 ]
