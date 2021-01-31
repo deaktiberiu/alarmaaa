@@ -5,7 +5,7 @@
     "firstName": "Mihaly ",
     "lastName": "Kadar",
     "telefon": "123456",
-    "prezent": true,
+    "prezent": false,
     "isSafe": false
   },
   {
@@ -14,7 +14,43 @@
     "firstName": "Tiberiu",
     "lastName": "Deak",
     "telefon": "654311",
-    "prezent": false,
+    "prezent": true,
     "isSafe": true
+  },
+  {
+    "id": "4chgik1612107720115",
+    "functie": "alergator",
+    "firstName": "Ionut",
+    "lastName": "Viout",
+    "telefon": "94948",
+    "prezent": true,
+    "isSafe": false
+  },
+  {
+    "id": "ti638o1612107737304",
+    "functie": "alergator",
+    "firstName": "Codruta",
+    "lastName": "Mariana",
+    "telefon": "94948111",
+    "prezent": true,
+    "isSafe": true
+  },
+  {
+    "id": "hhmn0e1612107750294",
+    "functie": "alergator",
+    "firstName": "Pepelea ",
+    "lastName": "Marinela",
+    "telefon": "94948111",
+    "prezent": true,
+    "isSafe": false
+  },
+  {
+    "id": "13rfr1612107761430",
+    "functie": "alergator",
+    "firstName": "George",
+    "lastName": "Gergel",
+    "telefon": "654654",
+    "prezent": false,
+    "isSafe": false
   }
 ]

@@ -1,7 +1,7 @@
 const API = {
     CREATE: {
         URL: "http://localhost:3000/teams-json/create",
-        METHOD: "POST" // POST
+        METHOD: "POST" 
     },
     READ: {
         URL: "http://localhost:3000/teams-json",
@@ -13,7 +13,7 @@ const API = {
     },
     DELETE: {
         URL: "http://localhost:3000/teams-json/delete",
-        METHOD: "DELETE" // DELETE
+        METHOD: "DELETE" 
     }
 };
 
@@ -27,7 +27,15 @@ function getPersonsHtml (persons) {
 }
 
 function getPersonhtml (person) {
-    return `<tr id=${person.id}>
+    let safeClass;
+    
+    if(person.isSafe ==true || person.prezent == false) {
+        safeClass = "is-safe";
+    }else {
+        safeClass = "is-not-safe";
+    }
+    console.log (safeClass)
+    return `<tr id=${person.id}  class=${safeClass}>
                 <td>${person.functie}</td>
                 <td>${person.firstName}</td>
                 <td>${person.lastName}</td>
@@ -44,11 +52,12 @@ function getPersonhtml (person) {
 let allPersons = [];
 
 function loadList() {
+    
     fetch(API.READ.URL)
         .then(res => res.json())
         .then(data => {
             allPersons = data;
-           console.log(data)
+           
            getPersonsHtml(allPersons);
         });
 }
@@ -57,7 +66,7 @@ loadList();
 
 function searchPersons(text){
     text= text.toLowerCase()
-    console.warn("serch", text, allPersons)
+   
     return allPersons.filter(person => {
         return person.firstName.toLowerCase().indexOf(text) > -1 || person.lastName.toLowerCase().indexOf(text) > -1 ;
     });
@@ -90,7 +99,6 @@ function writeNewPerson () {
     })
         .then(res => res.json())
         .then(r => {
-            console.warn(r);
             if (r.success) {
                 console.info('refresh list');
                 loadList();
@@ -161,22 +169,37 @@ function deletePerson (id) {
 }
 
 function changePrezenta(id) {
-    const person = [
-    ]
-
+    let isPrezent;
+    let modPersoana;
     
+    allPersons.find( persoana => {if (id == persoana.id){
+        if(persoana.prezenta == true) {
+            isPrezent = false;
+        }else {
+            isPrezent = true;
+        }
+
+        modPersoana = [
+            functie=persoana.functie,
+            firstName=persoana.firstName,
+            lastName=persoana.lastName,
+            telefon=persoana.telefon,
+            prezenta=isPrezent,
+            isSafe= persoana.isSafe
+        ];     
+    }});
+
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
         headers: {
             "Content-Type": "application/json"
           },
-        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(person)
+        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(modPersoana)
     })
         .then(res => res.json())
         .then(r => {
-            console.warn(r);
             if (r.success) {
-                console.info('refresh list');
+                
                 loadList();
             }
         })
@@ -217,7 +240,7 @@ function addListeners () {
         const target= e.target;
         if ( target.matches("a.delete-row")) {
             const id  = target.getAttribute("data-id");
-            console.log("delete row", id);
+          
             deletePerson(id);
         }else if(target.matches("a.edit-row")) {
             const id  = target.getAttribute("data-id");

@@ -1,30 +1,26 @@
+#main-container {
+    width:80%;
+    display: block;
+    margin:30px auto;
+}
+
 #statusList {
     border-collapse: collapse;
     width: 100%;
+    margin:30px auto;
+   
 }
 
 #statusList th, td {
     text-align: left;
     padding: 8px;
+    border:2px solid rgba(0,0,0,0.3);
 }  
 
-#statusList tr:nth-child(even){background-color: #f2f2f2}
+#statusList tr:nth-child(even){}
 
 #statusList th {
-    background-color: #00aeef;
-    color: white;
-}
-
-#statusList tr {
-    border-bottom:1px solid rgba(0,0,0,0.1);
-}
-
-#statusList td {
-   border-left:1px solid rgba(0,0,0,0.1);
-}
-
-.end-cell {
-     border-right: 1px solid rgba(0,0,0,0.1);
+    background-color: #b62eff;
 }
 
 #search-container {
@@ -33,5 +29,21 @@
 
 #search-containe input {
     padding:10px;
+}
+
+.is-not-safe{
+    background-color:rgba(255,77,46, 0.8);
+    color:#1b1c1b;
+    font-weight: bold;;
+}
+
+.is-safe{
+    background-color:rgba(119,255,46, 0.8);
+    color:#1b1c1b;
+    font-weight: bold;
+}
+
+tfoot {
+    background-color: #b62eff;
 }
 
