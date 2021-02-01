@@ -1,7 +1,7 @@
 const API = {
     CREATE: {
         URL: "http://localhost:3000/teams-json/create",
-        METHOD: "POST" 
+        METHOD: "POST"
     },
     READ: {
         URL: "http://localhost:3000/teams-json",
@@ -13,27 +13,27 @@ const API = {
     },
     DELETE: {
         URL: "http://localhost:3000/teams-json/delete",
-        METHOD: "DELETE" 
+        METHOD: "DELETE"
     }
 };
 
 let ghostvar;
 let editId;
 
-function getPersonsHtml (persons) {
+function getPersonsHtml(persons) {
     const tbody = document.querySelector('#statusList tbody');
-    tbody.innerHTML = persons.map (getPersonhtml).join(""); 
+    tbody.innerHTML = persons.map(getPersonhtml).join("");
 }
 
-function getPersonhtml (person) {
+function getPersonhtml(person) {
     let safeClass;
-    
-    if(person.isSafe ==true || person.prezent == false) {
+
+    if (person.isSafe == true || person.prezent == false) {
         safeClass = "is-safe";
-    }else {
+    } else {
         safeClass = "is-not-safe";
     }
-    console.log (person.firstName, safeClass)
+    console.log(person.firstName, safeClass)
     return `<tr id=${person.id}  class=${safeClass}>
                 <td>${person.functie}</td>
                 <td>${person.firstName}</td>
@@ -51,33 +51,33 @@ function getPersonhtml (person) {
 let allPersons = [];
 
 function loadList() {
-    
+
     fetch(API.READ.URL)
         .then(res => res.json())
         .then(data => {
             allPersons = data;
-           
-           getPersonsHtml(allPersons);
+
+            getPersonsHtml(allPersons);
         });
 }
 
-function searchPersons(text){
-    text= text.toLowerCase().trim();
-   
+function searchPersons(text) {
+    text = text.toLowerCase().trim();
+
     return allPersons.filter(person => {
-        return  person.functie.toLowerCase().indexOf(text) > -1 || person.firstName.toLowerCase().indexOf(text) > -1 || person.lastName.toLowerCase().indexOf(text) > -1  || person.telefon.toLowerCase().indexOf(text) > -1 ;
+        return person.functie.toLowerCase().indexOf(text) > -1 || person.firstName.toLowerCase().indexOf(text) > -1 || person.lastName.toLowerCase().indexOf(text) > -1 || person.telefon.toLowerCase().indexOf(text) > -1;
     });
 
 };
 
-function writeNewPerson () {
+function writeNewPerson() {
     const functie = document.querySelector("input[name=functie]").value;
     const firstName = document.querySelector("input[name=firstName]").value;
     const lastName = document.querySelector("input[name=lastName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
     const prezent = false;
     const isSafe = false;
-    
+
     const person = {
         functie,
         firstName,
@@ -86,12 +86,12 @@ function writeNewPerson () {
         prezent,
         isSafe
     }
-       
+
     fetch(API.CREATE.URL, {
         method: API.CREATE.METHOD,
         headers: {
             "Content-Type": "application/json"
-          },
+        },
         body: API.CREATE.METHOD === "GET" ? null : JSON.stringify(person)
     })
         .then(res => res.json())
@@ -125,20 +125,20 @@ function editPeron() {
         method: API.UPDATE.METHOD,
         headers: {
             "Content-Type": "application/json"
-          },
+        },
         body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(person)
     })
-   
+
         .then(res => res.json())
         .then(r => {
             if (r.success) {
                 loadList();
             }
         });
-   
+
 }
 
-function populateCurrentPerson(id){
+function populateCurrentPerson(id) {
     var person = allPersons.find(person => person.id === id)
 
     editId = id;
@@ -148,60 +148,42 @@ function populateCurrentPerson(id){
     const lastName = document.querySelector("input[name=lastName]");
     const telefon = document.querySelector("input[name=telefon]");
 
-        functie.value = person.functie
-        firstName.value = person.firstName
-        lastName.value = person.lastName
-        telefon.value = person.telefon
-           
+    functie.value = person.functie
+    firstName.value = person.firstName
+    lastName.value = person.lastName
+    telefon.value = person.telefon
+
 
 }
 
-function deletePerson (id) {
-        fetch("http://localhost:3000/teams-json/delete", {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ id })
-          }).then(res => res.json()).then(
-              r => {
-                loadList();
-              }
-          );
+function deletePerson(id) {
+    fetch("http://localhost:3000/teams-json/delete", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ id })
+    }).then(res => res.json()).then(
+        r => {
+            loadList();
+        }
+    );
 }
 
 function changePrezenta(id) {
     let isPrezent;
-    let modPersoana; 
-    
-    
-    allPersons.find( persoana => {if (id == persoana.id){
-        
-        if(persoana.prezent == true) {
-            isPrezent = false;
-        }else {
-            isPrezent = true;
-        }
+    let modPersoana = allPersons.find(persoana => {
+        return id == persoana.id;
+    });
 
-        console.log("after ifelse",isPrezent)
+    modPersoana.prezent = !modPersoana.prezent;
 
-        modPersoana = [
-            functie=persoana.functie,
-            firstName=persoana.firstName,
-            lastName=persoana.lastName,
-            telefon=persoana.telefon,
-            prezent=isPrezent,
-            isSafe= persoana.isSafe
-        ];  
-       
-    }});
-    
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
         headers: {
             "Content-Type": "application/json"
-          },
-        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(modPersoana)  
+        },
+        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(modPersoana)
     })
         .then(res => res.json())
         .then(r => {
@@ -213,7 +195,7 @@ function changePrezenta(id) {
     modPersoana = null;
 }
 
-function addListeners () {
+function addListeners() {
 
     const search = document.getElementById('search')
     search.addEventListener("input", e => {
@@ -225,8 +207,8 @@ function addListeners () {
     const prezentBtn = document.querySelector("#statusList tbody");
     prezentBtn.addEventListener("click", (e) => {
         const target = e.target;
-        
-        if(target.matches(".prezentBtn")) {
+
+        if (target.matches(".prezentBtn")) {
             const id = target.getAttribute("data-id");
             changePrezenta(id);
         }
@@ -234,21 +216,21 @@ function addListeners () {
 
     const saveBtn = document.getElementById("saveBtn");
     saveBtn.addEventListener("click", () => {
-        if ( editId){
-            editPeron(); 
+        if (editId) {
+            editPeron();
         } else {
-            writeNewPerson ();
+            writeNewPerson();
         }
     });
 
     const table = document.querySelector("#statusList tbody");
     table.addEventListener("click", (e) => {
-        const target= e.target;
-        if ( target.matches("a.delete-row")) {
-            const id  = target.getAttribute("data-id");
+        const target = e.target;
+        if (target.matches("a.delete-row")) {
+            const id = target.getAttribute("data-id");
             deletePerson(id);
-        }else if(target.matches("a.edit-row")) {
-            const id  = target.getAttribute("data-id");
+        } else if (target.matches("a.edit-row")) {
+            const id = target.getAttribute("data-id");
             populateCurrentPerson(id);
         }
     });
