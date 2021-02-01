@@ -17,9 +17,8 @@ const API = {
     }
 };
 
+let ghostvar;
 let editId;
-
-
 
 function getPersonsHtml (persons) {
     const tbody = document.querySelector('#statusList tbody');
@@ -61,8 +60,6 @@ function loadList() {
            getPersonsHtml(allPersons);
         });
 }
-
-loadList();
 
 function searchPersons(text){
     text= text.toLowerCase().trim();
@@ -112,13 +109,18 @@ function editPeron() {
     const firstName = document.querySelector("input[name=firstName]").value;
     const lastName = document.querySelector("input[name=lastName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
+    const prezent = false;
+    const isSafe = false;
 
     const person = {
         functie,
         firstName,
         lastName,
-        telefon
+        telefon,
+        prezent,
+        isSafe
     };
+
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
         headers: {
@@ -170,26 +172,30 @@ function deletePerson (id) {
 
 function changePrezenta(id) {
     let isPrezent;
-    let modPersoana;
+    let modPersoana; 
+    
     
     allPersons.find( persoana => {if (id == persoana.id){
         
-        if(persoana.prezenta == true) {
+        if(persoana.prezent == true) {
             isPrezent = false;
         }else {
             isPrezent = true;
         }
+
+        console.log("after ifelse",isPrezent)
 
         modPersoana = [
             functie=persoana.functie,
             firstName=persoana.firstName,
             lastName=persoana.lastName,
             telefon=persoana.telefon,
-            prezenta=isPrezent,
+            prezent=isPrezent,
             isSafe= persoana.isSafe
-        ];     
+        ];  
+       
     }});
-
+    
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
         headers: {
@@ -200,10 +206,11 @@ function changePrezenta(id) {
         .then(res => res.json())
         .then(r => {
             if (r.success) {
-                
                 loadList();
             }
         })
+
+    modPersoana = null;
 }
 
 function addListeners () {
@@ -247,4 +254,6 @@ function addListeners () {
     });
 }
 
-addListeners ();
+addListeners();
+
+loadList();
