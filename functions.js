@@ -34,7 +34,7 @@ function getPersonhtml (person) {
     }else {
         safeClass = "is-not-safe";
     }
-    console.log (safeClass)
+    console.log (person.firstName, safeClass)
     return `<tr id=${person.id}  class=${safeClass}>
                 <td>${person.functie}</td>
                 <td>${person.firstName}</td>
@@ -136,7 +136,7 @@ function editPeron() {
    
 }
 
-function populateCurrentPeron(id){
+function populateCurrentPerson(id){
     var person = allPersons.find(person => person.id === id)
 
     editId = id;
@@ -195,7 +195,7 @@ function changePrezenta(id) {
         headers: {
             "Content-Type": "application/json"
           },
-        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(modPersoana)
+        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(modPersoana)  
     })
         .then(res => res.json())
         .then(r => {
@@ -205,8 +205,6 @@ function changePrezenta(id) {
             }
         })
 }
-
-
 
 function addListeners () {
 
@@ -241,11 +239,10 @@ function addListeners () {
         const target= e.target;
         if ( target.matches("a.delete-row")) {
             const id  = target.getAttribute("data-id");
-          
             deletePerson(id);
         }else if(target.matches("a.edit-row")) {
             const id  = target.getAttribute("data-id");
-            populateCurrentPeron(id)
+            populateCurrentPerson(id);
         }
     });
 }
