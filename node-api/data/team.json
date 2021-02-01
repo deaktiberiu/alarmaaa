@@ -1,21 +1,12 @@
 [
   {
-    "id": "uv3lxm1611946631151",
-    "functie": "Stingator",
-    "firstName": "Mihaly ",
-    "lastName": "Kadar",
-    "telefon": "123456",
-    "prezent": false,
-    "isSafe": false
-  },
-  {
     "id": "1phgyu1611946645886",
     "functie": "Anuntator",
     "firstName": "Tiberiu",
     "lastName": "Deak",
     "telefon": "654311",
     "prezent": true,
-    "isSafe": true
+    "isSafe": false
   },
   {
     "id": "4chgik1612107720115",

@@ -173,6 +173,7 @@ function changePrezenta(id) {
     let modPersoana;
     
     allPersons.find( persoana => {if (id == persoana.id){
+        
         if(persoana.prezenta == true) {
             isPrezent = false;
         }else {
