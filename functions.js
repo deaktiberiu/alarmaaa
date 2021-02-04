@@ -104,7 +104,7 @@ function writeNewPerson() {
         });
 }
 
-function editPeron() {
+function editPerson() {
     const functie = document.querySelector("input[name=functie]").value;
     const firstName = document.querySelector("input[name=firstName]").value;
     const lastName = document.querySelector("input[name=lastName]").value;
@@ -217,7 +217,7 @@ function addListeners() {
     const saveBtn = document.getElementById("saveBtn");
     saveBtn.addEventListener("click", () => {
         if (editId) {
-            editPeron();
+            editPerson();
         } else {
             writeNewPerson();
         }
