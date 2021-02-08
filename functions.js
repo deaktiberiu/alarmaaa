@@ -40,7 +40,7 @@ function getPersonhtml(person) {
                 <td>${person.lastName}</td>
                 <td>${person.telefon}</td>
                 <td> <button class="prezentBtn" type="button" data-id="${person.id}">Prezent</button> ${person.prezent}</td>
-                <td> <button class="" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
+                <td> <button class="isSafeBtn" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
                 <td>
                     <a href="#" class="edit-row" data-id="${person.id}">&#9998;</a>
                     <a href="#" class="delete-row" data-id="${person.id}">&#10006;</a>     
@@ -171,12 +171,35 @@ function deletePerson(id) {
 }
 
 function changePrezenta(id) {
-    let isPrezent;
     let modPersoana = allPersons.find(persoana => {
         return id == persoana.id;
     });
 
     modPersoana.prezent = !modPersoana.prezent;
+
+    fetch(API.UPDATE.URL, {
+        method: API.UPDATE.METHOD,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(modPersoana)
+    })
+        .then(res => res.json())
+        .then(r => {
+            if (r.success) {
+                loadList();
+            }
+        })
+
+    modPersoana = null;
+}
+
+function changeIsSafe (id){
+    let modPersoana = allPersons.find(persoana => {
+        return id == persoana.id;
+    });
+
+    modPersoana.isSafe = !modPersoana.isSafe;
 
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
@@ -204,13 +227,16 @@ function addListeners() {
         getPersonsHtml(filtrate)
     });
 
-    const prezentBtn = document.querySelector("#statusList tbody");
-    prezentBtn.addEventListener("click", (e) => {
+    const statusChangeBtns = document.querySelector("#statusList tbody");
+    statusChangeBtns.addEventListener("click", (e) => {
         const target = e.target;
 
         if (target.matches(".prezentBtn")) {
             const id = target.getAttribute("data-id");
             changePrezenta(id);
+        }else if (target.matches(".isSafeBtn")){
+            const id = target.getAttribute("data-id");
+            changeIsSafe(id);
         }
     })
 
