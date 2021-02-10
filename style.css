@@ -1,13 +1,14 @@
 #main-container {
     width:80%;
     display: block;
-    margin:30px auto;
+     margin: auto;
 }
 
 #statusList {
     border-collapse: collapse;
     width: 100%;
     margin:30px auto;
+    
    
 }
 
@@ -21,13 +22,6 @@
     background-color: #b62eff;
 }
 
-#search-container {
-    margin-bottom:10px;
-}
-
-#search-containe input {
-    padding:10px;
-}
 
 .is-not-safe{
     background-color:rgba(255,77,46, 0.8);
@@ -44,4 +38,51 @@
 tfoot {
     background-color: #b62eff;
 }
+
+
+ #search {
+    float: right;
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 16px;
+    border: none;
+    font-size: 17px;
+}
+
+header h1 {
+  
+    float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  
+}
+
+#search-container {
+    overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.search {
+    float: right;
+}
+
+#search{
+    padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+#search-container{
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+}
+
 
