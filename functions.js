@@ -17,15 +17,14 @@ const API = {
     }
 };
 
-let ghostvar;
 let editId;
 
 function getPersonsHtml(persons) {
     const tbody = document.querySelector('#statusList tbody');
-    tbody.innerHTML = persons.map(getPersonhtml).join("");
-}
+    tbody.innerHTML =  orderList(persons).map(showPersonHtml).join("");
+}   
 
-function getPersonhtml(person) {
+function showPersonHtml(person) {
     let safeClass;
 
     if (person.isSafe == true || person.prezent == false) {
@@ -48,6 +47,22 @@ function getPersonhtml(person) {
             </tr>`
 }
 
+function orderList(persons) {    
+    const orderedArray= persons.sort((a,b)=>{
+        const a1 = a.firstName.toLowerCase();
+        const b1 = b.firstName.toLowerCase();
+
+        if (a1 < b1) {
+            return -1;
+        }else if (a1>b1){
+            return 1
+        }else {
+            return 0;
+        }
+    });
+    return orderedArray;
+}
+
 let allPersons = [];
 
 function loadList() {
@@ -57,8 +72,8 @@ function loadList() {
         .then(data => {
             allPersons = data;
 
-            getPersonsHtml(allPersons);
-        });
+            getPersonsHtml(allPersons); //show
+        });    
 }
 
 function searchPersons(text) {
@@ -176,6 +191,7 @@ function changePrezenta(id) {
     });
 
     modPersoana.prezent = !modPersoana.prezent;
+    modPersoana.prezent == false ? modPersoana.isSafe = true : modPersoana.isSafe = false;
 
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
