@@ -9,13 +9,15 @@
 </head>
 <body>
    
-    <div id="main-container">
-    <h1>Fire Alarm</h1>
-    <div id="search-container">
-        <label>Search: </label>
-        <input type="text" id="search">
-    </div>
+<header id="search-container">
     
+        <h1>Fire Alarm</h1>
+        <div class="search">
+         <input type="text" placeholder="Search.." id="search">
+        </div>
+</header>
+
+<article id="main-container">
     <table id="statusList">
         <thead>
             <tr>
@@ -45,7 +47,12 @@
             </tr>
         </tfoot>
     </table>
-    </div>
+    
+</article>
+
+<footer>
+
+</footer>
     <script src="functions.js" ></script>
 </body>
 </html>
