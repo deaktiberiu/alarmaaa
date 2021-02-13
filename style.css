@@ -1,3 +1,7 @@
+body{
+    background-color: #313133bb;
+}
+
 #main-container {
     width:80%;
     display: block;
@@ -18,14 +22,15 @@
     border:2px solid rgba(0,0,0,0.3);
 }  
 
-#statusList th {
-    background-color: #b62eff;
+#statusList th, tfoot {
+    background-color:#0a39d1 ;
+    color: #fff;
 }
 
 
 .is-not-safe{
-    background-color:rgba(255,77,46, 0.8);
-    color:#1b1c1b;
+    background-color:#D90404;
+    color:#fff;
     font-weight: bold;;
 }
 
@@ -35,9 +40,6 @@
     font-weight: bold;
 }
 
-tfoot {
-    background-color: #b62eff;
-}
 
 
  #search {
@@ -55,14 +57,14 @@ header h1 {
   display: block;
   color: black;
   text-align: center;
-  padding: 14px 16px;
+  
   text-decoration: none;
   
 }
 
 #search-container {
     overflow: hidden;
-  background-color: #e9e9e9;
+  background-color: #000000;
 }
 
 .search {
@@ -85,7 +87,7 @@ header h1 {
     text-align: left;
     width: 100%;
     margin: 0;
-    padding: 14px;
+    padding: 1px;
 }
 
 .footer {
@@ -94,7 +96,24 @@ header h1 {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #e9e9e9;
-    color: rgb(0, 0, 0);
+    background-color: #000000;
+    color: #fff;
     text-align: center;
 }
+
+.btn {
+    background-color: rgb(211, 212, 212);
+    border: none;
+    color: white;
+    padding: 17px 17px;
+    font-size: 17px;
+    cursor: pointer;
+    margin: 0px 5px;
+  }
+
+  .topbuttons {
+    float: right;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 17px ;
+  }
