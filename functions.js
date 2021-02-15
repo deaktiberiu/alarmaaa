@@ -1,18 +1,18 @@
 const API = {
     CREATE: {
-        URL: "http://localhost:3000/teams-json/create",
+        URL: "http://localhost:3000/teams/create",
         METHOD: "POST"
     },
     READ: {
-        URL: "http://localhost:3000/teams-json",
+        URL: "http://localhost:3000/teams",
         METHOD: "GET"
     },
     UPDATE: {
-        URL: "http://localhost:3000/teams-json/update",
+        URL: "http://localhost:3000/teams/update",
         METHOD: "PUT"
     },
     DELETE: {
-        URL: "http://localhost:3000/teams-json/delete",
+        URL: "http://localhost:3000/teams/delete",
         METHOD: "DELETE"
     }
 };
@@ -22,7 +22,7 @@ let editId;
 function getPersonsHtml(persons) {
     const tbody = document.querySelector('#statusList tbody');
     tbody.innerHTML =  orderList(persons).map(showPersonHtml).join("");
-}   
+}       
 
 function showPersonHtml(person) {
     let safeClass;
@@ -71,7 +71,6 @@ function loadList() {
         .then(res => res.json())
         .then(data => {
             allPersons = data;
-
             getPersonsHtml(allPersons); //show
         });    
 }
@@ -90,8 +89,8 @@ function writeNewPerson() {
     const firstName = document.querySelector("input[name=firstName]").value;
     const lastName = document.querySelector("input[name=lastName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
-    const prezent = false;
-    const isSafe = false;
+    const prezent = 0;
+    const isSafe = 0;
 
     const person = {
         functie,
@@ -172,7 +171,7 @@ function populateCurrentPerson(id) {
 }
 
 function deletePerson(id) {
-    fetch("http://localhost:3000/teams-json/delete", {
+    fetch("http://localhost:3000/teams/delete", {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -216,7 +215,7 @@ function changeIsSafe (id){
     });
 
     modPersoana.isSafe = !modPersoana.isSafe;
-
+     
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
         headers: {
@@ -232,6 +231,18 @@ function changeIsSafe (id){
         })
 
     modPersoana = null;
+}
+
+function clearImput () {
+
+    const functie = document.querySelector("input[name=functie]");
+    const firstName = document.querySelector("input[name=firstName]");
+    const lastName = document.querySelector("input[name=lastName]");
+    const telefon = document.querySelector("input[name=telefon]");
+    functie.value = null;
+    firstName.value = null;
+    lastName.value = null;
+    telefon.value = null;
 }
 
 function addListeners() {
@@ -263,6 +274,7 @@ function addListeners() {
         } else {
             writeNewPerson();
         }
+        clearImput ();
     });
 
     const table = document.querySelector("#statusList tbody");
