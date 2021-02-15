@@ -1,0 +1,104 @@
+body{
+    background-color: rgba(208,0,0,0.9);
+    background-size: 30px;
+    padding:0;
+    margin:0;   
+}
+
+#main-container {
+    width:80%;
+    display: block;
+    margin: auto;
+}
+
+#statusList {
+    border-collapse: collapse;
+    width: 100%;
+    margin:30px auto;   
+}
+
+#statusList th, td {
+    text-align: left;
+    padding: 8px;
+    border:2px solid rgba(0,0,0,0.3);
+}  
+
+#statusList th, tfoot {
+    background-color:#0a39d1 ;
+    color: #fff;
+}
+
+
+.is-not-safe{
+    background-color:#D90404;
+    color:#fff;
+    font-weight: bold;;
+}
+
+.is-safe{
+    background-color:rgba(119,255,46, 0.8);
+    color:#1b1c1b;
+    font-weight: bold;
+}
+
+header h1 {
+    display: block;
+    color: black;
+    text-align: center;    
+    text-decoration: none;
+  
+}
+
+#header {
+    overflow: hidden;
+    background-color: #000000;
+}
+
+#header-logo {
+    height:80px;
+    margin:5px 20px;
+}
+
+#search{
+    position: absolute;
+    top:40px;
+    right:20px;
+    border: none;
+    font-size: 14px;
+    }
+
+#search-container{
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 1px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    color: #fff;
+    text-align: center;
+}
+
+.btn {
+    background-color: rgb(211, 212, 212);
+    border: none;
+    color: white;
+    padding: 17px 17px;
+    font-size: 17px;
+    cursor: pointer;
+    margin: 0px 5px;
+  }
+
+  .topbuttons {
+    float: right;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 17px ;
+  }
