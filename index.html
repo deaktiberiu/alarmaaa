@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
@@ -9,32 +13,29 @@
 </head>
 <body>
    
-<header id="search-container">
-    
-        <h1><img src="firealarm.png" alt="" width="800px"></h1>
-        
+<header id="header-container">
+    <img src="firealarm.png" alt="">        
 </header>
 
-<div class="topnav">
-    <div class="search">
-         <input type="text" placeholder="Search.." id="search">
-        </div>
-        
-<div class="topbuttons">
-    <button class="btn"><i class="fa fa-trash"></i></button>
-<button class="btn"><i class="	fa fa-edit"></i></button>
-<button class="btn"><i class="fa fa-plus-square-o"></i></button>
-</div>
+<div id="topnav">
+    
+   <input id="search" type="text" placeholder="Search.." id="search">
+          
+    <div class="topbuttons">
+        <a class="btn"><i class="fa fa-trash"></i></a>
+        <a class="btn"><i class="fa fa-edit"></i></a>
+        <a class="btn popupHandler"><i class="fa fa-user-plus"></i></a>
+    </div>
         
 </div>
 
 <article id="main-container">
     <table id="statusList">
         <thead>
-            <tr>
+            <tr>    
                 <th>Functie</th>
                 <th> Prenume</th>
-                <th>Nume</th>
+                <th>Nume</th>   
                 <th>Telefon</th>              
                 <th class="present-cell">Prezent</th>
                 <th class="safe-cell">In siguranta ?</th>
@@ -46,18 +47,22 @@
         </tbody>
         <tfoot>
             <tr>
-                <td>
-                    <input  type='text' placeholder="Type function" name='functie'/></td>
-                <td> <input  type='text' placeholder="Type Full Name" name='firstName'/></td>
-                <td> <input  type='text' placeholder="Type Full Name" name='lastName'/></td>
-                <td> <input  type='text' placeholder="Type Phone" name='telefon'/></td>
-               
-                <td></td>
-                <td></td>
-                <td class="end-cell"><button id="saveBtn">Save</button></td>
+               &nbsp;
             </tr>
         </tfoot>
     </table>
+
+    <div id="popupContainer" class="hidden">
+        <div id="popUp">
+            <p id="popUpHeader">text</p>
+            <input  type='text' placeholder="Type function" name='functie'/>
+            <input  type='text' placeholder="Type Full Name" name='firstName'/>
+            <input  type='text' placeholder="Type Full Name" name='lastName'/>
+            <input  type='text' placeholder="Type Phone" name='telefon'/>
+            <button id="saveBtn">Save</button>
+            <button id="closePopup">X</button>
+        </div>
+    </div>
     
 </article>
 

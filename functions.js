@@ -41,7 +41,7 @@ function showPersonHtml(person) {
                 <td> <button class="prezentBtn" type="button" data-id="${person.id}">Prezent</button> ${person.prezent}</td>
                 <td> <button class="isSafeBtn" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
                 <td>
-                    <a href="#" class="edit-row" data-id="${person.id}">&#9998;</a>
+                    <a href="#" class="edit-row popupHandler" data-id="${person.id}">&#9998;</a>
                     <a href="#" class="delete-row" data-id="${person.id}">&#10006;</a>     
                 </td>
             </tr>`
@@ -242,7 +242,7 @@ function clearImput () {
     functie.value = null;
     firstName.value = null;
     lastName.value = null;
-    telefon.value = null;
+    telefon.value = null;   
 }
 
 function addListeners() {
@@ -287,6 +287,17 @@ function addListeners() {
             const id = target.getAttribute("data-id");
             populateCurrentPerson(id);
         }
+    });
+
+    const popup = document.querySelector (".popupHandler");
+
+    popup.addEventListener("click", (e)=> {
+            const popupContainer =document.getElementById("popupContainer");
+
+            if (popupContainer.classList.contains("hidden")) {
+                popupContainer.classList.remove("hidden");
+            }
+            ///// aici de contiunat butonul si functia
     });
 }
 
