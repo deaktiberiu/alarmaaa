@@ -26,13 +26,14 @@ function getPersonsHtml(persons) {
 
 function showPersonHtml(person) {
     let safeClass;
-
-    if (person.isSafe == true || person.prezent == false) {
-        safeClass = "is-safe";
+    console.log("person.isSafe",person.isSafe , "person.prezent " ,  person.prezent )
+    if (person.isSafe == 1 || person.prezent == 0) {
+       safeClass = "is-safe";
     } else {
+        console.log(person)
         safeClass = "is-not-safe";
     }
-    console.log(person.firstName, safeClass)
+    
     return `<tr id=${person.id}  class=${safeClass}>
                 <td>${person.functie}</td>
                 <td>${person.firstName}</td>
@@ -71,7 +72,7 @@ function loadList() {
         .then(res => res.json())
         .then(data => {
             allPersons = data;
-            getPersonsHtml(allPersons); //show
+            getPersonsHtml(allPersons); 
         });    
 }
 
@@ -111,9 +112,7 @@ function writeNewPerson() {
         .then(res => res.json())
         .then(r => {
             if (r.success) {
-                console.info('refresh list');
                 loadList();
-                console.warn(person)
             }
         });
 }
@@ -123,8 +122,8 @@ function editPerson() {
     const firstName = document.querySelector("input[name=firstName]").value;
     const lastName = document.querySelector("input[name=lastName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
-    const prezent = false;
-    const isSafe = false;
+    const prezent = 0;
+    const isSafe = 0;
 
     const person = {
         functie,
@@ -135,12 +134,13 @@ function editPerson() {
         isSafe
     };
 
+
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
         headers: {
             "Content-Type": "application/json"
         },
-        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(person)
+        body: API.UPDATE.METHOD === "PUT" ? null : JSON.stringify(person)
     })
 
         .then(res => res.json())
@@ -152,9 +152,9 @@ function editPerson() {
 
 }
 
-function populateCurrentPerson(id) {
-    var person = allPersons.find(person => person.id === id)
-
+function editCurrentPerson(id) {
+    let person = allPersons.find(person => person.id === id)
+    console.log(person);
     editId = id;
 
     const functie = document.querySelector("input[name=functie]");
@@ -162,12 +162,10 @@ function populateCurrentPerson(id) {
     const lastName = document.querySelector("input[name=lastName]");
     const telefon = document.querySelector("input[name=telefon]");
 
-    functie.value = person.functie
-    firstName.value = person.firstName
-    lastName.value = person.lastName
-    telefon.value = person.telefon
-
-
+    functie.value = person.functie;
+    firstName.value = person.firstName;
+    lastName.value = person.lastName;
+    telefon.value = person.telefon;    
 }
 
 function deletePerson(id) {
@@ -190,7 +188,7 @@ function changePrezenta(id) {
     });
 
     modPersoana.prezent = !modPersoana.prezent;
-    modPersoana.prezent == false ? modPersoana.isSafe = true : modPersoana.isSafe = false;
+    modPersoana.prezent == 0 ? modPersoana.isSafe = 1 : modPersoana.isSafe = 0;
 
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
@@ -245,8 +243,18 @@ function clearImput () {
     telefon.value = null;   
 }
 
-function addListeners() {
+function handlePopUp (){
+    const popupContainer =document.getElementById("popupContainer").classList;
 
+    if (popupContainer.contains("hidden")) {
+        popupContainer.remove("hidden");
+    }else {
+        popupContainer.add("hidden");
+    }
+
+}
+
+function addListeners() {
     const search = document.getElementById('search')
     search.addEventListener("input", e => {
         const text = e.target.value
@@ -275,6 +283,7 @@ function addListeners() {
             writeNewPerson();
         }
         clearImput ();
+        handlePopUp();
     });
 
     const table = document.querySelector("#statusList tbody");
@@ -285,22 +294,16 @@ function addListeners() {
             deletePerson(id);
         } else if (target.matches("a.edit-row")) {
             const id = target.getAttribute("data-id");
-            populateCurrentPerson(id);
+            editCurrentPerson(id);
+            handlePopUp();
         }
     });
 
     const popup = document.querySelector (".popupHandler");
-
     popup.addEventListener("click", (e)=> {
-            const popupContainer =document.getElementById("popupContainer");
-
-            if (popupContainer.classList.contains("hidden")) {
-                popupContainer.classList.remove("hidden");
-            }
-            ///// aici de contiunat butonul si functia
+        handlePopUp();
     });
 }
 
 addListeners();
-
 loadList();
