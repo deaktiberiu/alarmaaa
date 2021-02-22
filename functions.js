@@ -27,7 +27,7 @@ function getPersonsHtml(persons) {
 function showPersonHtml(person) {
     let safeClass;
     console.log("person.isSafe",person.isSafe , "person.prezent " ,  person.prezent )
-    if (person.isSafe == 1 || person.prezent == 0) {
+    if (person.isSafe == 0 || person.prezent == 1 ) {
        safeClass = "is-safe";
     } else {
         console.log(person)
@@ -187,8 +187,8 @@ function changePrezenta(id) {
         return id == persoana.id;
     });
 
-    modPersoana.prezent = !modPersoana.prezent;
-    modPersoana.prezent == 0 ? modPersoana.isSafe = 1 : modPersoana.isSafe = 0;
+    modPersoana.prezent = !modPersoana.prezent ;
+    modPersoana.prezent == 0 ? modPersoana.isSafe = 1 : modPersoana.isSafe = 1;
 
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
@@ -208,11 +208,11 @@ function changePrezenta(id) {
 }
 
 function changeIsSafe (id){
-    let modPersoana = allPersons.find(persoana => {
+    const modPersoana = allPersons.find(persoana => {
         return id == persoana.id;
     });
 
-    modPersoana.isSafe = !modPersoana.isSafe;
+    modPersoana.isSafe = modPersoana.isSafe === 0 ? 1 : 0;
      
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
@@ -227,8 +227,6 @@ function changeIsSafe (id){
                 loadList();
             }
         })
-
-    modPersoana = null;
 }
 
 function clearImput () {
