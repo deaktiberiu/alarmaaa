@@ -26,11 +26,11 @@ function getPersonsHtml(persons) {
 
 function showPersonHtml(person) {
     let safeClass;
-    console.log("person.isSafe",person.isSafe , "person.prezent " ,  person.prezent )
+
     if (person.isSafe == 1 || person.prezent == 0) {
        safeClass = "is-safe";
     } else {
-        console.log(person)
+       
         safeClass = "is-not-safe";
     }
     
@@ -48,10 +48,11 @@ function showPersonHtml(person) {
             </tr>`
 }
 
-function orderList(persons) {    
+function orderList(persons) {   
+    
     const orderedArray= persons.sort((a,b)=>{
-        const a1 = a.firstName.toLowerCase();
-        const b1 = b.firstName.toLowerCase();
+        const a1 = a.lastName.toLowerCase();
+        const b1 = b.lastName.toLowerCase();
 
         if (a1 < b1) {
             return -1;
@@ -82,7 +83,6 @@ function searchPersons(text) {
     return allPersons.filter(person => {
         return person.functie.toLowerCase().indexOf(text) > -1 || person.firstName.toLowerCase().indexOf(text) > -1 || person.lastName.toLowerCase().indexOf(text) > -1 || person.telefon.toLowerCase().indexOf(text) > -1;
     });
-
 };
 
 function writeNewPerson() {
@@ -154,7 +154,7 @@ function editPerson() {
 
 function editCurrentPerson(id) {
     let person = allPersons.find(person => person.id === id)
-    console.log(person);
+   
     editId = id;
 
     const functie = document.querySelector("input[name=functie]");
@@ -187,9 +187,8 @@ function changePrezenta(id) {
         return id == persoana.id;
     });
 
-    modPersoana.prezent = !modPersoana.prezent;
-    modPersoana.prezent == 0 ? modPersoana.isSafe = 1 : modPersoana.isSafe = 0;
-
+    modPersoana.prezent == 0 ? modPersoana.prezent = 1 : modPersoana.prezent = 0;
+    
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
         headers: {
@@ -212,7 +211,7 @@ function changeIsSafe (id){
         return id == persoana.id;
     });
 
-    modPersoana.isSafe = !modPersoana.isSafe;
+    modPersoana.isSafe == 0 ? modPersoana.isSafe = 1 : modPersoana.isSafe = 0;
      
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
@@ -299,9 +298,9 @@ function addListeners() {
         }
     });
 
-    const popup = document.querySelector (".popupHandler");
-    popup.addEventListener("click", (e)=> {
-        handlePopUp();
+    const popup = document.querySelectorAll  (".popupHandler");
+    popup.forEach(el => {
+        el.addEventListener("click", (e)=> handlePopUp())
     });
 }
 
