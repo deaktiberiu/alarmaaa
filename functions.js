@@ -21,7 +21,7 @@ let editId;
 
 function getPersonsHtml(persons) {
     const tbody = document.querySelector('#statusList tbody');
-    tbody.innerHTML =  orderList(persons).map(showPersonHtml).join("");
+    tbody.innerHTML =  orederList(persons).map(showPersonHtml).join("");
 }       
 
 function showPersonHtml(person) {
@@ -48,7 +48,20 @@ function showPersonHtml(person) {
             </tr>`
 }
 
-function orderList(persons) {   
+function orederList (persons) {
+    let isSafeList = [];
+    let isNotSafeList = [];
+
+    persons.forEach((el => el.isSafe == 0 ? isNotSafeList.push(el) : isSafeList.push(el) ));
+    
+    const isSafeListOrdered = orderThisList(isSafeList);
+    const isNotSafeListOrdered = orderThisList(isNotSafeList);
+    
+    console.log ( isNotSafeListOrdered.concat(isSafeListOrdered))
+    return isNotSafeListOrdered.concat(isSafeListOrdered);
+}
+
+function orderThisList(persons) { 
     
     const orderedArray= persons.sort((a,b)=>{
         const a1 = a.lastName.toLowerCase();
@@ -187,7 +200,13 @@ function changePrezenta(id) {
         return id == persoana.id;
     });
 
-    modPersoana.prezent == 0 ? modPersoana.prezent = 1 : modPersoana.prezent = 0;
+    if(modPersoana.prezent == 0 ) { 
+            modPersoana.prezent = 1;
+            modPersoana.isSafe = 0;
+        }else {
+             modPersoana.prezent = 0;
+             modPersoana.isSafe = 1;
+            }
     
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
