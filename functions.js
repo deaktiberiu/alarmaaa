@@ -301,7 +301,7 @@ function addListeners() {
     const popup = document.querySelectorAll  (".popupHandler");
     popup.forEach(el => {
         el.addEventListener("click", (e)=> handlePopUp())
-    });
+    }); 
 }
 
 addListeners();
