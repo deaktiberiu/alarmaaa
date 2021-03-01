@@ -172,6 +172,7 @@ function editPerson() {
         });
 
         editId = null;
+        clearImput();
 
 }
 
