@@ -1,48 +1,29 @@
 # alarmaaa
-fire alarm management app
+Fire Alarm App
+
+Useful tool for supervisiors in order to account for every employee in a fire emergency.
 
 
 ## TODO: 
 
-1.tabele / interfata
-    a. tabel persoane:
-        - Functie (admin, responsabil)
-            -> adimin 
-                . adauga & stearge persoane
-                . sa adauge & stearga etaje si camere 
-                . schimba statut persoana
+[x] Create simple HTML Table
+[x] Added Logo & styling
+[x] Create Database 
+[x] Create Imputs: Function / First Name / Last Name / Phone Number
+[x] Add two Parameters: Prezent & isSafe 
+[x] Write CRUD on team members 
+[x] Imputs have to open in a pop-up (edit & add new person)
+[x] Imputs Validator 
+[x] Team members display in alphabethical order with the ones that are not safe first
+[x] Add Search by First Name and Last Name
+[x] Change icons in edit
+[ ] split interface in two  - 1. supervisor : can edit list and create fire exercise
+                            - 2. employee : can mark himself as prezent
+[ ] functie imput must be changed into select (must define the options)
+[x] created emplyeee interface with one button (prezent)
+[ ] fire alarm test cu countdown + animatie not safe + generate raport 
 
-            -> resoponabil zona (o)
-                . adauga & stearge persoane
-                . schimba statut persoanele care ii apartin
- 
-            -> utilizator
-                . schimbe statusul lui
-        
-        - nume
-        - prenume
-        - nr de telefon
-        - locatie (unde se afla)
-        
-    b. tabel etaje/ camere (o)
-        - etaj
-        - camere
 
-    c. interfata utilizator 
-        - esti safe :   da ? nu ? inca in cladire (verde / rosu / galben)
 
-2. Functionalitate :
-    - genera o alarma simulare 
-    - se poate schimba statusul de siguranta  fiecarui utilizator (rosu, galben, verde) in functie de raspunsul pe care il da
-    - adminul sau responsabilul poate schimba statusul de siguranta fiecarui utilizator (rosu, galben, verde) 
-    - responsabilul poate vedea utilizatorii lui prima data (vede etajul lui mai intai)
 
-   . opetions:
-        - logare admin ?
-        - un link care sa confirme ca persoana e ok ?
-
-1-- afisare utilizatori
-1-- adauga pers -- important - > rol (stingator/anuntator/resp evacuare)
--- prezenta 
--- safe sau nu
  
