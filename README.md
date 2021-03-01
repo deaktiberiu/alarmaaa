@@ -3,8 +3,11 @@ Fire Alarm App
 
 Useful tool for supervisiors in order to account for every employee in a fire emergency.
 
+## LIVE PREVIEW
+- [demo] (https://github.com/deaktiberiu/alarmaaa/)
 
-## TODO: 
+
+## TO DO: 
 
 - [x] Create simple HTML Table
 - [x] Added Logo & styling
