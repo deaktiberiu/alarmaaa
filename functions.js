@@ -111,8 +111,7 @@ function writeNewPerson() {
         document.getElementsByName("functie, firstName, lastName, telefon ").css("border", "2px solid red");
        return false; 
     }
-
-
+    
     const person = {
         functie,
         firstName,
@@ -147,6 +146,7 @@ function editPerson() {
     const isSafe = 0;
 
     const person = {
+        id:editId,
         functie,
         firstName,
         lastName,
@@ -155,15 +155,15 @@ function editPerson() {
         isSafe
     };
 
+    console.warn("pers modificata este ", person);
 
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
         headers: {
             "Content-Type": "application/json"
         },
-        body: API.UPDATE.METHOD === "PUT" ? null : JSON.stringify(person)
+        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(person)
     })
-
         .then(res => res.json())
         .then(r => {
             if (r.success) {
@@ -171,11 +171,12 @@ function editPerson() {
             }
         });
 
+        editId = null;
+
 }
 
 function editCurrentPerson(id) {
-    let person = allPersons.find(person => person.id === id)
-   
+    let person = allPersons.find(person => person.id == id)
     editId = id;
 
     const functie = document.querySelector("input[name=functie]");
@@ -229,8 +230,6 @@ function changePrezenta(id) {
                 loadList();
             }
         })
-
-    modPersoana = null;
 }
 
 function changeIsSafe (id){
