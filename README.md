@@ -1,7 +1,13 @@
-# alarmaaa
+## alarmaaa
 Fire Alarm App
 
 Useful tool for supervisiors in order to account for every employee in a fire emergency.
+
+## TEAM
+
+- <a target="_blank" href="https://github.com/deaktiberiu/">Deak Tiberiu</a>
+- <a target="_blank" href="https://github.com/mihaly1997">Kadar Mihaly</a>
+
 
 ## LIVE PREVIEW
 - [Demo](https://github.com/deaktiberiu/alarmaaa/)  
