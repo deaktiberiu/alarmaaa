@@ -54,15 +54,19 @@
 
     <div id="popupContainer" class="hidden">
         <div id="popUp">
-            <p id="popUpHeader">text</p>
-            <input  type='text' placeholder="Type function" name='functie'/>
-            <input  type='text' placeholder="Type Full Name" name='firstName'/>
-            <input  type='text' placeholder="Type Full Name" name='lastName'/>
-            <input  type='text' placeholder="Type Phone" name='telefon'/>
-            <button id="saveBtn">Save</button>
+           <form action="">
+            <p id="popUpHeader">text</p> 
+            <input  type='text' placeholder="Type function" name='functie' required/>
+            <input  type='text' placeholder="Type Full Name" name='firstName' required/>
+            <input  type='text' placeholder="Type Full Name" name='lastName' required/>
+            <input  type='tel' placeholder="Type Phone" name='telefon' pattern="[0-9]{3}-[0-9]{9}" required
+            minlength="4" maxlength="8" size="10"/>
+            <button type="submit" id="saveBtn">Save</button>
             <button id="closePopup" class="popupHandler">X</button>
+        </form>
         </div>
     </div>
+    
     
 </article>
 

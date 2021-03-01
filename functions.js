@@ -106,6 +106,13 @@ function writeNewPerson() {
     const prezent = 0;
     const isSafe = 0;
 
+    
+    if (!functie || !firstName || !lastName || !telefon ) {
+        document.getElementsByName("functie, firstName, lastName, telefon ").css("border", "2px solid red");
+       return false; 
+    }
+
+
     const person = {
         functie,
         firstName,
@@ -129,6 +136,7 @@ function writeNewPerson() {
             }
         });
 }
+
 
 function editPerson() {
     const functie = document.querySelector("input[name=functie]").value;
