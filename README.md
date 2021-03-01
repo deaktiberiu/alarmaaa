@@ -4,7 +4,7 @@ Fire Alarm App
 Useful tool for supervisiors in order to account for every employee in a fire emergency.
 
 ## LIVE PREVIEW
-- [demo] (https://github.com/deaktiberiu/alarmaaa/)
+- [DEMO] (https://github.com/deaktiberiu/alarmaaa/)
 
 
 ## TO DO: 
@@ -20,8 +20,8 @@ Useful tool for supervisiors in order to account for every employee in a fire em
 - [x] Team members display in alphabethical order with the ones that are not safe first
 - [x] Add Search by First Name and Last Name
 - [x] Change icons in edit
-- [ ] split interface in two  - 1. supervisor : can edit list and create fire exercise
-                            - 2. employee : can mark himself as prezent
+- [ ] split interface in two    - 1. supervisor : can edit list and create fire exercise
+                                - 2. employee : can mark himself as prezent
 - [ ] functie imput must be changed into select (must define the options)
 - [x] created emplyeee interface with one button (prezent)
 - [ ] fire alarm test cu countdown + animatie not safe + generate raport 
