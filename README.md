@@ -10,7 +10,7 @@ Useful tool for supervisiors in order to account for every employee in a fire em
 
 
 ## LIVE PREVIEW
-- [Demo](https://github.com/deaktiberiu/alarmaaa/)  
+- [Demo](https://deaktiberiu.io/alarmaaa/)  
 
 
 ## TO DO: 
