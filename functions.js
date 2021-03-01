@@ -42,8 +42,8 @@ function showPersonHtml(person) {
                 <td> <button class="prezentBtn" type="button" data-id="${person.id}">Prezent</button> ${person.prezent}</td>
                 <td> <button class="isSafeBtn" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
                 <td>
-                    <a href="#" class="edit-row popupHandler" data-id="${person.id}">&#9998;</a>
-                    <a href="#" class="delete-row" data-id="${person.id}">&#10006;</a>     
+                    <a href="#" class="edit-row popupHandler fa fa-edit" data-id="${person.id}"></a>
+                    <a href="#" class="delete-row fa fa-trash" data-id="${person.id}"></a>     
                 </td>
             </tr>`
 }

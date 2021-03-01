@@ -36,6 +36,12 @@ button:hover {
     border:2px solid rgba(0,0,0,0.3);
 }  
 
+#statusList th, td a {
+    font-size:20px!important;
+    margin:auto 10px;
+    text-decoration: none;
+}
+
 #statusList th, tfoot {
     background-color:#0583F2 ;
     color: #fff;
