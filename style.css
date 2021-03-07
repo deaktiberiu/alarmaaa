@@ -85,6 +85,10 @@ border: solid 1px #0583F2;
 border-radius: 3px;
 }
 
+#number-of-persons {
+    margin:20px auto 0;
+}
+
 .footer {    
     position: fixed;
     left: 0;
@@ -148,11 +152,15 @@ border-radius: 3px;
       transition: ease-in-out .36s;
   }
 
-  #popUp input {
+  #popUp input,select {
       display: block;
       width:80%;
       margin:10px auto 0;
       padding:6px;
+  }
+
+  #popUp select {
+
   }
 
   #popUp #saveBtn {

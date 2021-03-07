@@ -21,6 +21,8 @@ let editId;
 
 function getPersonsHtml(persons) {
     const tbody = document.querySelector('#statusList tbody');
+   
+    
     tbody.innerHTML =  orederList(persons).map(showPersonHtml).join("");
 }       
 
@@ -56,8 +58,6 @@ function orederList (persons) {
     
     const isSafeListOrdered = orderThisList(isSafeList);
     const isNotSafeListOrdered = orderThisList(isNotSafeList);
-    
-    console.log ( isNotSafeListOrdered.concat(isSafeListOrdered))
     return isNotSafeListOrdered.concat(isSafeListOrdered);
 }
 
@@ -100,7 +100,6 @@ function searchPersons(text) {
 
 function writeNewPerson() {
     const functie = document.querySelector("select").value;
-    console.warn({functie});
     const firstName = document.querySelector("input[name=firstName]").value;
     const lastName = document.querySelector("input[name=lastName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
@@ -139,7 +138,7 @@ function writeNewPerson() {
 
 
 function editPerson() {
-    const functie = document.querySelector("input[name=functie]").value;
+    const functie = document.querySelector("select").value;
     const firstName = document.querySelector("input[name=firstName]").value;
     const lastName = document.querySelector("input[name=lastName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
@@ -155,8 +154,6 @@ function editPerson() {
         prezent,
         isSafe
     };
-
-    console.warn("pers modificata este ", person);
 
     fetch(API.UPDATE.URL, {
         method: API.UPDATE.METHOD,
@@ -181,7 +178,7 @@ function editCurrentPerson(id) {
     let person = allPersons.find(person => person.id == id)
     editId = id;
 
-    const functie = document.querySelector("input[name=functie]");
+    const functie = document.querySelector("select");
     const firstName = document.querySelector("input[name=firstName]");
     const lastName = document.querySelector("input[name=lastName]");
     const telefon = document.querySelector("input[name=telefon]");

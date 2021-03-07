@@ -18,13 +18,14 @@
 </header>
 
 <div id="topnav">
+   
     <a href="prezent.html?id=30">test</a>
    <input id="search" type="text" placeholder="Search.." id="search">
           
     <div class="topbuttons">
         <a class="btn popupHandler"><i class="fa fa-user-plus"></i></a>
     </div>
-        
+    <p id="number-of-persons">Nr of persons: <span> 10</span></p>    
 </div>
 
 <article id="main-container">
@@ -32,7 +33,7 @@
         <thead>
             <tr>    
                 <th>Functie</th>
-                <th> Prenume</th>
+                <th>Prenume</th>
                 <th>Nume</th>   
                 <th>Telefon</th>              
                 <th class="present-cell">Prezent</th>
@@ -54,11 +55,11 @@
         <div id="popUp">
            <form action="">
             <p id="popUpHeader">text</p> 
-            <!--input  type='text' placeholder="Type function" name='functie' required/-->
-            <select name='functie' required >
+            
+            <select name='functie' required  >
                 <option value="Supervisor">Supervisor</option>
                 <option value="Resp Extinctor">Resp Extinctor</option>  
-                <option  value="NoN">NoN</option>  
+                <option  value="NoN" selected>NoN</option>  
             </select>
             <input  type='text' placeholder="Type Full Name" name='firstName' required/>
             <input  type='text' placeholder="Type Full Name" name='lastName' required/>
