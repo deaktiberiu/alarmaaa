@@ -54,7 +54,12 @@
         <div id="popUp">
            <form action="">
             <p id="popUpHeader">text</p> 
-            <input  type='text' placeholder="Type function" name='functie' required/>
+            <!--input  type='text' placeholder="Type function" name='functie' required/-->
+            <select name='functie' required >
+                <option value="Supervisor">Supervisor</option>
+                <option value="Resp Extinctor">Resp Extinctor</option>  
+                <option  value="NoN">NoN</option>  
+            </select>
             <input  type='text' placeholder="Type Full Name" name='firstName' required/>
             <input  type='text' placeholder="Type Full Name" name='lastName' required/>
             <input  type='tel' placeholder="Type Phone" name='telefon' pattern="[0-9]{3}-[0-9]{9}" required

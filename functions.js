@@ -87,7 +87,7 @@ function loadList() {
         .then(data => {
             allPersons = data;
             getPersonsHtml(allPersons); 
-        });    
+        });
 }
 
 function searchPersons(text) {
@@ -99,7 +99,8 @@ function searchPersons(text) {
 };
 
 function writeNewPerson() {
-    const functie = document.querySelector("input[name=functie]").value;
+    const functie = document.querySelector("select").value;
+    console.warn({functie});
     const firstName = document.querySelector("input[name=firstName]").value;
     const lastName = document.querySelector("input[name=lastName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
@@ -259,7 +260,7 @@ function changeIsSafe (id){
 
 function clearImput () {
 
-    const functie = document.querySelector("input[name=functie]");
+    const functie = document.querySelector("select");
     const firstName = document.querySelector("input[name=firstName]");
     const lastName = document.querySelector("input[name=lastName]");
     const telefon = document.querySelector("input[name=telefon]");
