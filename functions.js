@@ -21,9 +21,9 @@ let editId;
 
 function getPersonsHtml(persons) {
     const tbody = document.querySelector('#statusList tbody');
-   
-    
+    const counterCont = document.querySelector("#numberOfPersons span");
     tbody.innerHTML =  orederList(persons).map(showPersonHtml).join("");
+    counterCont.innerHTML = document.getElementsByClassName("counter").length;
 }       
 
 function showPersonHtml(person) {
@@ -36,7 +36,7 @@ function showPersonHtml(person) {
         safeClass = "is-not-safe";
     }
     
-    return `<tr id=${person.id}  class=${safeClass}>
+    return `<tr id=${person.id}  class="${safeClass} counter">
                 <td>${person.functie}</td>
                 <td>${person.firstName}</td>
                 <td>${person.lastName}</td>
@@ -81,7 +81,6 @@ function orderThisList(persons) {
 let allPersons = [];
 
 function loadList() {
-
     fetch(API.READ.URL)
         .then(res => res.json())
         .then(data => {
@@ -106,7 +105,6 @@ function writeNewPerson() {
     const prezent = 0;
     const isSafe = 0;
 
-    
     if (!functie || !firstName || !lastName || !telefon ) {
         document.getElementsByName("functie, firstName, lastName, telefon ").css("border", "2px solid red");
        return false; 
