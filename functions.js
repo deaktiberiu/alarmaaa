@@ -95,7 +95,21 @@ function searchPersons(text) {
     return allPersons.filter(person => {
         return person.functie.toLowerCase().indexOf(text) > -1 || person.firstName.toLowerCase().indexOf(text) > -1 || person.lastName.toLowerCase().indexOf(text) > -1 || person.telefon.toLowerCase().indexOf(text) > -1;
     });
-};
+}
+
+function formValidation() {
+    const firstName = document.querySelector("input[name=firstName]").value;
+    const lastName = document.querySelector("input[name=lastName]").value;
+    const telefon = document.querySelector("input[name=telefon]").value;
+    console.log ({firstName})
+    if (firstName !="" && lastName !=""  && telefon  !="" ) {
+        document.querySelector("#saveBtn").removeAttribute("disabled");
+    }else {
+        console.info("mai incearca");
+    }
+ }
+
+
 
 function writeNewPerson() {
     const functie = document.querySelector("select").value;
@@ -168,7 +182,6 @@ function editPerson() {
         });
 
         editId = null;
-        clearImput();
 
 }
 
@@ -253,23 +266,14 @@ function changeIsSafe (id){
     modPersoana = null;
 }
 
-function clearImput () {
-
-    const functie = document.querySelector("select");
-    const firstName = document.querySelector("input[name=firstName]");
-    const lastName = document.querySelector("input[name=lastName]");
-    const telefon = document.querySelector("input[name=telefon]");
-    functie.value = null;
-    firstName.value = null;
-    lastName.value = null;
-    telefon.value = null;   
-}
-
 function handlePopUp (){
     const popupContainer =document.getElementById("popupContainer").classList;
+    const saveBtnHandler = document.getElementById("saveBtn");
+    document.querySelector('#popUp form').reset();
 
     if (popupContainer.contains("hidden")) {
         popupContainer.remove("hidden");
+        saveBtnHandler.setAttribute("disabled", "");
     }else {
         popupContainer.add("hidden");
     }
@@ -277,6 +281,13 @@ function handlePopUp (){
 }
 
 function addListeners() {
+
+    const inputValidate = document.querySelector('#popUp form')
+    inputValidate.addEventListener("input", e => {
+        const text = e.target.value;
+        formValidation();
+    });
+
     const search = document.getElementById('search')
     search.addEventListener("input", e => {
         const text = e.target.value
@@ -304,7 +315,7 @@ function addListeners() {
         } else {
             writeNewPerson();
         }
-        clearImput ();
+
         handlePopUp();
     });
 
