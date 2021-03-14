@@ -9,13 +9,36 @@ const API = {
     }
 };
 
-let i = 0;
 
-function changePrezenta(id) {
-    
-    console.log(i++);
+let currentId = 0;
+let allPersons = [];
 
-  /*   if(modPersoana.prezent == 0 ) { 
+function loadList() {
+    fetch(API.READ.URL)
+        .then(res => res.json())
+        .then(data => {
+            allPersons = data;
+        });
+}
+
+function getCurrentId () {
+    const urlString = window.location.search;
+    currentId = urlString.substr(4);
+}
+
+function writePersonStatus()  {
+    const numeHolder = document.getElementById("");
+}
+
+function changePrezenta() {
+    console.log()
+    let modPersoana = allPersons.find(persoana => {
+        return currentId == persoana.id;
+    });
+
+    console.log(allPersons)
+
+   if(modPersoana.prezent == 0 ) { 
             modPersoana.prezent = 1;
             modPersoana.isSafe = 0;
         }else {
@@ -35,7 +58,7 @@ function changePrezenta(id) {
             if (r.success) {
                 loadList();
             }
-        }) */
+        }) 
 }
 
 
@@ -45,4 +68,11 @@ function addListeners() {
     prezentaBtn.addEventListener("click", e => changePrezenta() );
 }
 
-addListeners() ;
+function initPage () {
+    loadList();
+    addListeners();
+    getCurrentId ();
+    writePersonStatus();
+}
+
+initPage ()
