@@ -26,7 +26,7 @@ Useful tool for supervisiors in order to account for every employee in a fire em
 - [x] Team members display in alphabethical order with the ones that are not safe first
 - [x] Add Search by First Name and Last Name
 - [x] Change icons in edit
-- [ ] split interface in two    - [ ] 1. supervisor : can edit list and create fire exercise
+- [x] split interface in two    - [ ] 1. supervisor : can edit list and create fire exercise
                                 - [ ] 2. employee : can mark himself as prezent
 - [x] functie imput must be changed into select (must define the options)
 - [x] created emplyeee interface with one button (prezent)
