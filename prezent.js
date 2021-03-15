@@ -12,13 +12,13 @@ const API = {
 
 let currentId = 0;
 let allPersons = [];
+let modPersoana = [];
+let prezentStatus = 0;
 
-function loadList() {
-    fetch(API.READ.URL)
-        .then(res => res.json())
-        .then(data => {
-            allPersons = data;
-        });
+function findPerson () {
+    modPersoana =  allPersons.find(persoana => {
+        return currentId == persoana.id;
+    });
 }
 
 function getCurrentId () {
@@ -27,18 +27,22 @@ function getCurrentId () {
 }
 
 function writePersonStatus()  {
-    const numeHolder = document.getElementById("");
+    const numeContainer = document.getElementById("Nume");
+    const functieContainer = document.getElementById("resp");
+    const mainContP = document.getElementById("mainContP");
+    const prezentBtn = document.querySelector("#prezentBtn span");
+
+    const fullName = modPersoana.firstName + " " + modPersoana.lastName;
+    const functie = modPersoana.functie;
+
+    prezentBtn.innerHTML = modPersoana.prezent == 1 ? "Prezent" : "Absent";
+    
+    numeContainer.innerHTML = fullName;
+    functieContainer.innerHTML = functie;
 }
 
 function changePrezenta() {
-    console.log()
-    let modPersoana = allPersons.find(persoana => {
-        return currentId == persoana.id;
-    });
-
-    console.log(allPersons)
-
-   if(modPersoana.prezent == 0 ) { 
+    if(modPersoana.prezent == 0 ) { 
             modPersoana.prezent = 1;
             modPersoana.isSafe = 0;
         }else {
@@ -59,7 +63,7 @@ function changePrezenta() {
                 loadList();
             }
         }) 
-}
+    }
 
 
 function addListeners() { 
@@ -68,11 +72,21 @@ function addListeners() {
     prezentaBtn.addEventListener("click", e => changePrezenta() );
 }
 
+function loadList() {
+    fetch(API.READ.URL)
+        .then(res => res.json())
+        .then(data => {
+            allPersons = data;
+            initPage ();
+    });
+}
+
 function initPage () {
-    loadList();
-    addListeners();
     getCurrentId ();
+    findPerson ();
     writePersonStatus();
 }
 
-initPage ()
+addListeners();
+loadList();
+
