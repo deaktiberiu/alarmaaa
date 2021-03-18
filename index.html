@@ -33,7 +33,6 @@
         <thead>
             <tr>    
                 <th>Functie</th>
-                <th>Prenume</th>
                 <th>Nume</th>   
                 <th>Telefon</th>              
                 <th class="present-cell">Prezent</th>
@@ -59,8 +58,7 @@
                 <option value="Resp Extinctor">Resp Extinctor</option>  
                 <option  value="NoN" selected>NoN</option>  
             </select>
-            <input required type='text' placeholder="Type Full Name" name='firstName' />
-            <input required type='text' placeholder="Type Full Name" name='lastName' />
+            <input required type='text' placeholder="Type Full Name" name='fullName' />
             <input required type='tel' placeholder="Type Phone" name='telefon' pattern="[0-9]{3}-[0-9]{9}" 
             minlength="4" maxlength="10" size="10"/>
             <button type="submit" id="saveBtn">Save</button>

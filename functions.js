@@ -38,8 +38,7 @@ function showPersonHtml(person) {
     
     return `<tr id=${person.id}  class="${safeClass} counter">
                 <td>${person.functie}</td>
-                <td>${person.firstName}</td>
-                <td>${person.lastName}</td>
+                <td>${person.fullName}</td>
                 <td>${person.telefon}</td>
                 <td> <button class="prezentBtn" type="button" data-id="${person.id}">Prezent</button> ${person.prezent}</td>
                 <td> <button class="isSafeBtn" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
@@ -64,8 +63,8 @@ function orederList (persons) {
 function orderThisList(persons) { 
     
     const orderedArray= persons.sort((a,b)=>{
-        const a1 = a.lastName.toLowerCase();
-        const b1 = b.lastName.toLowerCase();
+        const a1 = a.fullName.toLowerCase();
+        const b1 = b.fullName.toLowerCase();
 
         if (a1 < b1) {
             return -1;
@@ -93,16 +92,14 @@ function searchPersons(text) {
     text = text.toLowerCase().trim();
 
     return allPersons.filter(person => {
-        return person.functie.toLowerCase().indexOf(text) > -1 || person.firstName.toLowerCase().indexOf(text) > -1 || person.lastName.toLowerCase().indexOf(text) > -1 || person.telefon.toLowerCase().indexOf(text) > -1;
+        return person.functie.toLowerCase().indexOf(text) > -1 || person.fullName.toLowerCase().indexOf(text) > -1 ||  person.telefon.toLowerCase().indexOf(text) > -1;
     });
 }
 
 function formValidation() {
-    const firstName = document.querySelector("input[name=firstName]").value;
-    const lastName = document.querySelector("input[name=lastName]").value;
+    const fullName = document.querySelector("input[name=fullName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
-    console.log ({firstName})
-    if (firstName !="" && lastName !=""  && telefon  !="" ) {
+    if (fullName !="" && telefon  !="" ) {
         document.querySelector("#saveBtn").removeAttribute("disabled");
     }else {
         console.info("mai incearca");
@@ -113,21 +110,19 @@ function formValidation() {
 
 function writeNewPerson() {
     const functie = document.querySelector("select").value;
-    const firstName = document.querySelector("input[name=firstName]").value;
-    const lastName = document.querySelector("input[name=lastName]").value;
+    const fullName = document.querySelector("input[name=fullName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
     const prezent = 0;
     const isSafe = 0;
 
-    if (!functie || !firstName || !lastName || !telefon ) {
-        document.getElementsByName("functie, firstName, lastName, telefon ").css("border", "2px solid red");
+    if (!functie || !fullName || !telefon ) {
+        document.getElementsByName("functie, fullName, telefon ").css("border", "2px solid red");
        return false; 
     }
     
     const person = {
         functie,
-        firstName,
-        lastName,
+        fullName,
         telefon,
         prezent,
         isSafe
@@ -151,8 +146,7 @@ function writeNewPerson() {
 
 function editPerson() {
     const functie = document.querySelector("select").value;
-    const firstName = document.querySelector("input[name=firstName]").value;
-    const lastName = document.querySelector("input[name=lastName]").value;
+    const fullName = document.querySelector("input[name=fullName]").value;
     const telefon = document.querySelector("input[name=telefon]").value;
     const prezent = 0;
     const isSafe = 0;
@@ -160,8 +154,7 @@ function editPerson() {
     const person = {
         id:editId,
         functie,
-        firstName,
-        lastName,
+        fullName,
         telefon,
         prezent,
         isSafe
@@ -190,13 +183,11 @@ function editCurrentPerson(id) {
     editId = id;
 
     const functie = document.querySelector("select");
-    const firstName = document.querySelector("input[name=firstName]");
-    const lastName = document.querySelector("input[name=lastName]");
+    const fullName = document.querySelector("input[name=fullName]");
     const telefon = document.querySelector("input[name=telefon]");
 
     functie.value = person.functie;
-    firstName.value = person.firstName;
-    lastName.value = person.lastName;
+    fullName.value = person.fullName;
     telefon.value = person.telefon;    
 }
 
