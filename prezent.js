@@ -13,7 +13,6 @@ const API = {
 let currentId = 0;
 let allPersons = [];
 let modPersoana = [];
-let prezentStatus = 0;
 
 function findPerson () {
     modPersoana =  allPersons.find(persoana => {

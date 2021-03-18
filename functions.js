@@ -56,8 +56,8 @@ function orederList (persons) {
 
     persons.forEach((el => el.isSafe == 0 ? isNotSafeList.push(el) : isSafeList.push(el) ));
     
-    const isSafeListOrdered = orderThisList(isSafeList);
-    const isNotSafeListOrdered = orderThisList(isNotSafeList);
+    let isSafeListOrdered = orderThisList(isSafeList);
+    let isNotSafeListOrdered = orderThisList(isNotSafeList);
     return isNotSafeListOrdered.concat(isSafeListOrdered);
 }
 
