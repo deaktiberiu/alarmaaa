@@ -31,7 +31,7 @@ function writePersonStatus()  {
     const mainContP = document.getElementById("mainContP");
     const prezentBtn = document.querySelector("#prezentBtn span");
 
-    const fullName = modPersoana.fullName;
+    const fullName = modPersoana.firstName + " " + modPersoana.lastName;
     const functie = modPersoana.functie;
 
     prezentBtn.innerHTML = modPersoana.prezent == 1 ? "Prezent" : "Absent";
