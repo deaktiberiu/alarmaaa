@@ -12,10 +12,10 @@ const API = {
 
 let currentId = 0;
 let allPersons = [];
-let modPersoana = [];
+let modPers = [];
 
 function findPerson () {
-    modPersoana =  allPersons.find(persoana => {
+    modPers =  allPersons.find(persoana => {
         return currentId == persoana.id;
     });
 }
@@ -30,23 +30,25 @@ function writePersonStatus()  {
     const functieContainer = document.getElementById("resp");
     const mainContP = document.getElementById("mainContP");
     const prezentBtn = document.querySelector("#prezentBtn span");
+    
 
-    const fullName = modPersoana.firstName + " " + modPersoana.lastName;
-    const functie = modPersoana.functie;
+    const fullName = modPers.firstName + " " + modPers.lastName;
+    const functie = modPers.functie;
 
-    prezentBtn.innerHTML = modPersoana.prezent == 1 ? "Prezent" : "Absent";
+    prezentBtn.innerHTML = modPers.prezent == 1 ? "Absent" : "Prezent";
     
     numeContainer.innerHTML = fullName;
     functieContainer.innerHTML = functie;
+    document.title =`Prezent : ${fullName} ` ;
 }
 
 function changePrezenta() {
-    if(modPersoana.prezent == 0 ) { 
-            modPersoana.prezent = 1;
-            modPersoana.isSafe = 0;
+    if(modPers.prezent == 0 ) { 
+            modPers.prezent = 1;
+            modPers.isSafe = 0;
         }else {
-             modPersoana.prezent = 0;
-             modPersoana.isSafe = 1;
+                modPers.prezent = 0;
+                modPers.isSafe = 1;
             }
     
     fetch(API.UPDATE.URL, {
@@ -54,7 +56,7 @@ function changePrezenta() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(modPersoana)
+        body: API.UPDATE.METHOD === "GET" ? null : JSON.stringify(modPers)
     })
         .then(res => res.json())
         .then(r => {

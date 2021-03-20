@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fire Alarm</title>
+    <title>Fire Alarm | Supervisor</title>
 </head>
 <body>
    
@@ -18,25 +18,35 @@
 </header>
 
 <div id="topnav">
-   
-    <a href="prezent.html?id=30">test</a>
+
    <input id="search" type="text" placeholder="Search.." id="search">
           
-    <div class="topbuttons">
-        <a class="btn popupHandler"><i class="fa fa-user-plus"></i></a>
-    </div>
-    <p id="numberOfPersons">Nr of persons: <span> 10</span></p>    
+   
+    <p id="numberOfPersons">Nr of persons: <span> 0</span></p>    
 </div>
 
 <article id="main-container">
-   <table>
-       
-   </table>    
+    <table id="statusList">
+        <thead>
+            <tr>    
+                <th>Functie</th>
+                <th>Nume</th>
+                <th>Telefon</th>              
+                <th class="safe-cell">In siguranta ?</th>           
+            </tr>
+        </thead> 
+            <tbody></tbody>
+        <tfoot>
+            <tr>
+               &nbsp;
+            </tr>
+        </tfoot>
+    </table>
 </article>
 
 <footer class="footer">
     <p>2021</p>
 </footer>
-    <script src="functions.js" ></script>
+    <script src="supervisor.js" ></script>
 </body>
 </html>

@@ -38,14 +38,15 @@ function showPersonHtml(person) {
     
     return `<tr id=${person.id}  class="${safeClass} counter">
                 <td>${person.functie}</td>
-                <td>${person.firstName}</td>
-                <td>${person.lastName}</td>
+                <td>${person.firstName} ${person.lastName}</td>
                 <td>${person.telefon}</td>
                 <td> <button class="prezentBtn" type="button" data-id="${person.id}">Prezent</button> ${person.prezent}</td>
                 <td> <button class="isSafeBtn" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
                 <td>
                     <a href="#" class="edit-row popupHandler fa fa-edit" data-id="${person.id}"></a>
                     <a href="#" class="delete-row fa fa-trash" data-id="${person.id}"></a>     
+                    <a href="userpage.html?id=${person.id}" class="fa fa-link" ></a>     
+                    
                 </td>
             </tr>`
 }

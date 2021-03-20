@@ -56,8 +56,11 @@ button:hover {
 
 .is-safe{
     background-color:rgba(119,255,46, 0.8);
-    color:#1b1c1b;
-    
+    color:#1b1c1b;  
+}
+
+.display-none {
+    display: none;
 }
 
 #header-container {
