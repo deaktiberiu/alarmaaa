@@ -16,19 +16,13 @@ function getPersonsHtml(persons) {
     const tbody = document.querySelector('#statusList tbody');
     const counterCont = document.querySelector("#numberOfPersons span");
     tbody.innerHTML =  orederList(persons).map(showPersonHtml).join("");
-    counterCont.innerHTML = document.getElementsByClassName("counter").length -document.getElementsByClassName("display-none").length;
+    counterCont.innerHTML = document.getElementsByClassName("counter").length /* -document.getElementsByClassName("display-none").length */;
 }       
 
 function showPersonHtml(person) {
     let safeClass;
     let displayThis = "";
-
-    if(person.prezent == 0)
-        {
-            displayThis = "display-none";
-            console.warn("amintrat");
-        }
-
+    
     if (person.isSafe == 1) {
        safeClass = "is-safe";
     } else {
@@ -78,7 +72,9 @@ function loadList() {
     fetch(API.READ.URL)
         .then(res => res.json())
         .then(data => {
-            allPersons = data;
+
+            allPersons = data.filter(obj => obj.prezent == 1);
+            
             getPersonsHtml(allPersons); 
         });
 }
@@ -120,17 +116,35 @@ function searchPersons(text) {
 
 /*fire alarm test */
 
+function handlePopUp (){
+    const popupContainer =document.getElementById("popupContainer").classList;
+    if (popupContainer.contains("hidden")) {
+        popupContainer.remove("hidden");
+    }else {
+        popupContainer.add("hidden");
+        location.reload();
+    }
+
+}
+
 function  countdownFinished() {
-    const notSafe = document.getElementsByClassName("is-not-safe");
-    console.log(notSafe);    
+    const verificare = allPersons.find(el => el.isSafe == 0)
+    const results = document.getElementById ("results");
+    handlePopUp ();
+    if(verificare) {
+        results.innerHTML =" TEST FAILED ";
+    } else {
+        results.innerHTML =" CONGRADULATIONS! THE TEST WAS SUSCCESFUL ";
+    }
 }
 
 function countdownBeat (timer) {
     const countdownContainer =  document.querySelector("#countdownContainer");
     const bodyElement = document.getElementsByTagName("BODY")[0]; 
-    console.log(timer)
+
     let min =  ~~(timer/60);
     let sec = timer%60; 
+
     let zero = sec<10 ? 0 : "";
     bodyElement.style.boxShadow =" rgba(255, 99, 71, 0.4) 0px 0px 1000px inset";
     setTimeout(function (){bodyElement.style.boxShadow ="rgba(255, 99, 71, 0.3) 0px 0px 0px inset"},200);
@@ -144,7 +158,9 @@ function countdown (timer) {
             if (timer ==0 ) {
                 countdownFinished();
             } 
-                else {return countdown(timer);
+                else 
+                {
+                    return countdown(timer);
                 }
     },1000);
 } 
@@ -180,7 +196,12 @@ function  addListeners ( ) {
     });
 
     const fireAlarmTestBtn = document.getElementById("fireAlarmTestBtn");
-    fireAlarmTestBtn.addEventListener("click", e=>startCountdown())
+    fireAlarmTestBtn.addEventListener("click", e=>startCountdown());
+
+    const popup = document.querySelectorAll  (".popupHandler");
+    popup.forEach(el => {
+        el.addEventListener("click", (e)=> handlePopUp())
+    }); 
 
 }
 

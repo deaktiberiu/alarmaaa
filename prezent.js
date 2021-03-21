@@ -28,14 +28,25 @@ function getCurrentId () {
 function writePersonStatus()  {
     const numeContainer = document.getElementById("Nume");
     const functieContainer = document.getElementById("resp");
-    const mainContP = document.getElementById("mainContP");
-    const prezentBtn = document.querySelector("#prezentBtn span");
+    const currPrezenta = document.querySelector("#currPrezenta span");
+    const prezentSpBtn = document.querySelector("#prezentBtn span");
+    const prezentBtn = document.querySelector("#prezentBtn");
     
 
     const fullName = modPers.firstName + " " + modPers.lastName;
     const functie = modPers.functie;
 
-    prezentBtn.innerHTML = modPers.prezent == 1 ? "Absent" : "Prezent";
+    if( modPers.prezent == 1 ) {
+        prezentSpBtn.innerHTML="Absent";
+        currPrezenta.innerHTML="Prezent";
+        prezentBtn.style.backgroundColor = "#D90404";
+        prezentBtn.style.boxShadow = " 0px 10px 20px rgba(217, 4, 4, 0.8)";
+    }else {
+        prezentSpBtn.innerHTML="Prezent";
+        currPrezenta.innerHTML="Absent";
+        prezentBtn.style.backgroundColor = "rgba(106, 215, 48, 1)"
+        prezentBtn.style.boxShadow = " 0px 10px 20px rgba(119,255,46, 0.8)";
+    }
     
     numeContainer.innerHTML = fullName;
     functieContainer.innerHTML = functie;

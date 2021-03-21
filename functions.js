@@ -316,7 +316,6 @@ function addListeners() {
         } else {
             writeNewPerson();
         }
-
         handlePopUp();
     });
 
