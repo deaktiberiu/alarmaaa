@@ -26,7 +26,7 @@ function showPersonHtml(person) {
     if(person.prezent == 0)
         {
             displayThis = "display-none";
-            console.warn("amintrat")
+            console.warn("amintrat");
         }
 
     if (person.isSafe == 1) {
@@ -121,15 +121,20 @@ function searchPersons(text) {
 /*fire alarm test */
 
 function  countdownFinished() {
-    alert("gata");
+    const notSafe = document.getElementsByClassName("is-not-safe");
+    console.log(notSafe);    
 }
 
 function countdownBeat (timer) {
-    const countdownContainer =  document.querySelector("#countdownContainer span");
+    const countdownContainer =  document.querySelector("#countdownContainer");
     const bodyElement = document.getElementsByTagName("BODY")[0]; 
-    bodyElement.style.boxShadow =" red 0px 0px 100px inset";
-   
-    countdownContainer.innerHTML = `${timer}`;
+    console.log(timer)
+    let min =  ~~(timer/60);
+    let sec = timer%60; 
+    let zero = sec<10 ? 0 : "";
+    bodyElement.style.boxShadow =" rgba(255, 99, 71, 0.4) 0px 0px 1000px inset";
+    setTimeout(function (){bodyElement.style.boxShadow ="rgba(255, 99, 71, 0.3) 0px 0px 0px inset"},200);
+    countdownContainer.innerHTML = `${min}:${zero}${sec}`;
 }
 
 function countdown (timer) {
@@ -139,12 +144,22 @@ function countdown (timer) {
             if (timer ==0 ) {
                 countdownFinished();
             } 
-                else {
-                    bodyElement.style.boxShadow =" red 0px 0px 0px inset";
-                    return countdown(timer);
+                else {return countdown(timer);
                 }
     },1000);
 } 
+
+function manageUi(){
+    const countdownContainer =  document.querySelector("#countdownContainer");
+    const fireAlarmTestBtn = document.getElementById("fireAlarmTestBtn");
+    fireAlarmTestBtn.style.display="none";
+    countdownContainer.style.display="block"
+}
+
+function startCountdown (){
+    manageUi();
+    countdown (3);
+}
 /*fire alarm test */
 
 function  addListeners ( ) {
@@ -165,7 +180,7 @@ function  addListeners ( ) {
     });
 
     const fireAlarmTestBtn = document.getElementById("fireAlarmTestBtn");
-    fireAlarmTestBtn.addEventListener("click", e=>countdown (15) )
+    fireAlarmTestBtn.addEventListener("click", e=>startCountdown())
 
 }
 
