@@ -22,6 +22,7 @@ function getPersonsHtml(persons) {
 function showPersonHtml(person) {
     let safeClass;
     let displayThis = "";
+    let safeStatus = person.isSafe == 0 ? "Nu e safe" : "E safe";
     
     if (person.isSafe == 1) {
        safeClass = "is-safe";
@@ -34,7 +35,7 @@ function showPersonHtml(person) {
                 <td>${person.functie} </td>
                 <td>${person.lastName}  ${person.firstName}</td>
                 <td>${person.telefon}</td>  
-                <td> <button class="isSafeBtn" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
+                <td> <button class="isSafeBtn" type="button" data-id="${person.id}">${safeStatus}</button> </td>
             </tr>`
 }
 

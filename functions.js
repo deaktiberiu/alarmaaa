@@ -28,11 +28,16 @@ function getPersonsHtml(persons) {
 
 function showPersonHtml(person) {
     let safeClass;
+    let prezentStatus = person.prezent == 0 ? "Absent" : "Prezent";
+    let safeStatus = person.isSafe == 0 ? "Nu e safe" : "E safe";
+
 
     if (person.isSafe == 1 || person.prezent == 0) {
        safeClass = "is-safe";
+       if(person.prezent == 0 ) {
+           safeClass  = safeClass + "absent";
+       }
     } else {
-       
         safeClass = "is-not-safe";
     }
     
@@ -40,8 +45,8 @@ function showPersonHtml(person) {
                 <td>${person.functie}</td>
                 <td>${person.firstName} ${person.lastName}</td>
                 <td>${person.telefon}</td>
-                <td> <button class="prezentBtn" type="button" data-id="${person.id}">Prezent</button> ${person.prezent}</td>
-                <td> <button class="isSafeBtn" type="button" data-id="${person.id}">Safe</button> ${person.isSafe}</td>
+                <td> <button class="prezentBtn " type="button" data-id="${person.id}">${prezentStatus}</button> </td>
+                <td> <button class="isSafeBtn" type="button" data-id="${person.id}">${safeStatus}</button></td>
                 <td>
                     <a href="#" class="edit-row popupHandler fa fa-edit" data-id="${person.id}"></a>
                     <a href="#" class="delete-row fa fa-trash" data-id="${person.id}"></a>     
@@ -54,12 +59,26 @@ function showPersonHtml(person) {
 function orederList (persons) {
     let isSafeList = [];
     let isNotSafeList = [];
+    let isNotPrezentList = [];
 
-    persons.forEach((el => el.isSafe == 0 ? isNotSafeList.push(el) : isSafeList.push(el) ));
+    persons.forEach(el => {
+
+        if(el.prezent == 0 ) {
+            isNotPrezentList.push(el);
+        }else
+            if( (el.isSafe == 1) ) 
+                {
+                    isSafeList.push(el);
+                }else {
+                    isNotSafeList.push(el)
+                }
+    })
     
     let isSafeListOrdered = orderThisList(isSafeList);
-    let isNotSafeListOrdered = orderThisList(isNotSafeList);
-    return isNotSafeListOrdered.concat(isSafeListOrdered);
+    let isNotSafeListOrdered = orderThisList(isNotSafeList); 
+    let isAbsentList = orderThisList(isNotPrezentList); 
+    
+    return isNotSafeListOrdered.concat(isSafeListOrdered.concat(isAbsentList));
 }
 
 function orderThisList(persons) { 
@@ -293,7 +312,7 @@ function addListeners() {
     search.addEventListener("input", e => {
         const text = e.target.value
         const filtrate = searchPersons(text)
-        getPersonsHtml(filtrate)
+        getPersonsHtml(filtrate);
     });
 
     const statusChangeBtns = document.querySelector("#statusList tbody");
