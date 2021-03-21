@@ -117,6 +117,36 @@ function searchPersons(text) {
     });
 }
 
+
+/*fire alarm test */
+
+function  countdownFinished() {
+    alert("gata");
+}
+
+function countdownBeat (timer) {
+    const countdownContainer =  document.querySelector("#countdownContainer span");
+    const bodyElement = document.getElementsByTagName("BODY")[0]; 
+    bodyElement.style.boxShadow =" red 0px 0px 100px inset";
+   
+    countdownContainer.innerHTML = `${timer}`;
+}
+
+function countdown (timer) {
+    setTimeout(function(){
+            timer--;
+            countdownBeat(timer);           
+            if (timer ==0 ) {
+                countdownFinished();
+            } 
+                else {
+                    bodyElement.style.boxShadow =" red 0px 0px 0px inset";
+                    return countdown(timer);
+                }
+    },1000);
+} 
+/*fire alarm test */
+
 function  addListeners ( ) {
     const statusChangeBtns = document.querySelector("#statusList tbody");
     statusChangeBtns.addEventListener("click", (e) => {
@@ -133,6 +163,9 @@ function  addListeners ( ) {
         const filtrate = searchPersons(text)
         getPersonsHtml(filtrate)
     });
+
+    const fireAlarmTestBtn = document.getElementById("fireAlarmTestBtn");
+    fireAlarmTestBtn.addEventListener("click", e=>countdown (15) )
 
 }
 
